@@ -1,5 +1,6 @@
-package ru.atkachev.tm.command.data.xml;
+package ru.atkachev.tm.command.data.json;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
@@ -8,22 +9,24 @@ import ru.atkachev.tm.entity.Project;
 import java.io.File;
 import java.io.IOException;
 
-public class XMLSaveCommand extends AbstractCommand {
-    public XMLSaveCommand(IServiceLocator serviceLocate) {
+public class JSONSaveCommand extends AbstractCommand {
+
+    public JSONSaveCommand(IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 
+    @Override
     public String command() {
-        return "s x";
+        return "j s";
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         Project[] projects = serviceLocate.getProjectService().getProjectList().toArray(new Project[0]);
-        XmlMapper xmlMapper = new XmlMapper();
-        File file = new File("temp.xml");
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("temp.json");
         try {
-            xmlMapper.writeValue(file, projects);
+            mapper.writeValue(file, projects);
         } catch (IOException e){
             System.out.println("IOException!!!");
         }
@@ -31,7 +34,7 @@ public class XMLSaveCommand extends AbstractCommand {
 
     @Override
     public String description() {
-        return "save xml";
+        return "save in json";
     }
 
     @Override

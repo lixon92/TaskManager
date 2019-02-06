@@ -1,5 +1,6 @@
 *.idea/
 *target/
+*temp.xml
 *~
 *.iml
 *.bin

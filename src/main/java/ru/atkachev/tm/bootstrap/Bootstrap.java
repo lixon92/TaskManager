@@ -2,7 +2,9 @@ package ru.atkachev.tm.bootstrap;
 
 import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.command.data.bin.BinSaveCommand;
-import ru.atkachev.tm.command.data.bin.BinUpCommand;
+import ru.atkachev.tm.command.data.bin.BinLoadCommand;
+import ru.atkachev.tm.command.data.json.JSONSaveCommand;
+import ru.atkachev.tm.command.data.xml.XMLSaveCommand;
 import ru.atkachev.tm.command.helper.HelpCommand;
 import ru.atkachev.tm.command.helper.Helper;
 import ru.atkachev.tm.command.project.ProjectCreateCommand;
@@ -60,7 +62,9 @@ public class Bootstrap implements IServiceLocator {
         registry(new UserLogonCommand(this));
 
         registry(new BinSaveCommand(this));
-        registry(new BinUpCommand(this));
+        registry(new BinLoadCommand(this));
+        registry(new XMLSaveCommand(this));
+        registry(new JSONSaveCommand(this));
 
         registry(new HelpCommand(this));
         registry(new Helper(this));

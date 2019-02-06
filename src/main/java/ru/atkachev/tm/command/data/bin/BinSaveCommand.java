@@ -22,9 +22,7 @@ public class BinSaveCommand extends AbstractCommand {
     public void execute() {
         try{
             Project[] project = serviceLocate.getProjectService().getProjectList().toArray(new Project[0]);
-//        project.setName("Onbording");
-//        project.setDescribe("Onbording style");
-            //File.createTempFile("temp", "bin");
+
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.bin"));
             objectOutputStream.writeObject(project);
             objectOutputStream.close();

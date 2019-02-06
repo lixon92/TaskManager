@@ -10,8 +10,8 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinUpCommand extends AbstractCommand {
-    public BinUpCommand(IServiceLocator serviceLocate) {
+public class BinLoadCommand extends AbstractCommand {
+    public BinLoadCommand(IServiceLocator serviceLocate) {
             super(serviceLocate);
     }
 
