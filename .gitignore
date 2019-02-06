@@ -1,9 +1,8 @@
-*.[i]
+*.idea/
 *target/
 *~
 *.iml
 *.bin
-*.xml
 *.json
 
 # Compiled class file
