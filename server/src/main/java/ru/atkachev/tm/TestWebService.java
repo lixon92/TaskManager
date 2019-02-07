@@ -11,8 +11,8 @@ import javax.xml.ws.Endpoint;
 public class TestWebService {
     @WebMethod
     public Integer sum(
-            @WebParam(name = "a") Integer a,
-            @WebParam(name = "b") Integer b){
+            Integer a,
+            Integer b){
         return a + b;
     }
 

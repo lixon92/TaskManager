@@ -1,8 +1,9 @@
 package ru.atkachev.tm.bootstrap;
 
+import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
-import ru.atkachev.tm.command.data.bin.BinSaveCommand;
 import ru.atkachev.tm.command.data.bin.BinLoadCommand;
+import ru.atkachev.tm.command.data.bin.BinSaveCommand;
 import ru.atkachev.tm.command.data.json.JSONSaveCommand;
 import ru.atkachev.tm.command.data.xml.XMLSaveCommand;
 import ru.atkachev.tm.command.helper.HelpCommand;
@@ -17,32 +18,16 @@ import ru.atkachev.tm.command.task.TaskPrintCommand;
 import ru.atkachev.tm.command.task.TaskUpdateCommand;
 import ru.atkachev.tm.command.user.UserCreateCommand;
 import ru.atkachev.tm.command.user.UserLogonCommand;
-import ru.atkachev.tm.entity.User;
-import ru.atkachev.tm.repository.ProjectRepository;
-import ru.atkachev.tm.repository.TaskRepository;
-import ru.atkachev.tm.repository.UserRepository;
-import ru.atkachev.tm.service.ProjectService;
-import ru.atkachev.tm.service.TaskService;
-import ru.atkachev.tm.api.IServiceLocator;
-import ru.atkachev.tm.service.UserService;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Bootstrap implements IServiceLocator {
 
-    private User currentUser;
-
-    final private TaskRepository taskRepository = new TaskRepository();
-    final private ProjectRepository projectRepository = new ProjectRepository();
-    final private UserRepository userRepository = new UserRepository();
-
-    final private TaskService taskService = new TaskService(taskRepository);
-    final private ProjectService projectService = new ProjectService(projectRepository, taskRepository);
-    final private UserService userService = new UserService(userRepository);
-
     final private Scanner scanner = new Scanner(System.in);
 
-    private final Map <String, AbstractCommand> commands = new HashMap<>();
+    private final Map<String, AbstractCommand> commands = new HashMap<>();
 
     public void init(){
         String inputText;
@@ -72,7 +57,7 @@ public class Bootstrap implements IServiceLocator {
         for(;;){
             inputText = scanner.nextLine();
             inputCommand = commands.get(inputText);
-            if (inputCommand != null && (!inputCommand.isSecure() || currentUser != null) ){
+            if ( inputCommand != null ){
                 System.out.println("[" + inputCommand.description() + "]");
                 inputCommand.execute();
                 System.out.println("[OK]");
@@ -89,7 +74,7 @@ public class Bootstrap implements IServiceLocator {
     }
 
     public Map <String, AbstractCommand> getCommandList(){
-            return commands;
+        return commands;
     }
     public ProjectService getProjectService(){
         return projectService;
@@ -109,4 +94,3 @@ public class Bootstrap implements IServiceLocator {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
-}
