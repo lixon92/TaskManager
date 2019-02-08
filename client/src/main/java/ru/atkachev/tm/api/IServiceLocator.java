@@ -1,14 +1,16 @@
 package ru.atkachev.tm.api;
 
+import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.ProjectEndpoint;
+import ru.atkachev.tm.endpoint.TaskEndpoint;
+
 import java.util.Map;
 
 public interface IServiceLocator {
 
-    public abstract ProjectService getProjectService();
-    public abstract TaskService getTaskService();
-    public abstract String getTerminalService();
-    public abstract UserService getUserService();
-    public abstract Map<String, AbstractCommand> getCommandList();
-    public abstract void setCurrentUser(User currentUser);
-    public User getCurrentUser();
+    ProjectEndpoint getProjectEndpoint();
+    TaskEndpoint getTaskEndpoint();
+    public String getConsoleServiceString();
+    public int getConsoleServiceInteger();
+    public double getConsoleServiceDouble();
 }

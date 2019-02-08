@@ -14,16 +14,16 @@ public class TaskCreateCommand extends AbstractCommand {
     }
 
     public void execute() {
-        System.out.println("enter number of project");
-        final int numberTask = Integer.parseInt(serviceLocate.getTerminalService()) - 1;
-        final String projectId = serviceLocate.getProjectService().getProjectList().get(numberTask).getId();
+        System.out.println("enter id of project");
+        final String projectId = serviceLocate.getConsoleServiceString();
 
         System.out.println("enter name of task");
-        final String nameTask = serviceLocate.getTerminalService();
+        final String nameTask = serviceLocate.getConsoleServiceString();
 
         System.out.println("enter description of task");
-        final String descriptionTask = serviceLocate.getTerminalService();
-        serviceLocate.getTaskService().createTask(projectId, nameTask, descriptionTask);
+        final String descriptionTask = serviceLocate.getConsoleServiceString();
+
+        serviceLocate.getTaskEndpoint().createTask(projectId, nameTask, descriptionTask);
     }
 
     public String description() {

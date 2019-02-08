@@ -17,15 +17,23 @@ public class TaskService {
         taskRepository.createTask(projectId, name, description);
     }
 
-    public void deleteTask(int index) {
-        taskRepository.deleteTask(index);
+    public void deleteTask(String taskId) {
+        taskRepository.deleteTask(taskId);
     }
 
-    public void updateTask(int index, String name, String description){
-        taskRepository.updateTask(index, name, description);
+    public void updateTask(String taskId, String name, String description) {
+        taskRepository.updateTask(taskId, name, description);
     }
 
-    public List<Task> getTaskList() {
+    public String getTaskList() {
         return taskRepository.getTaskList();
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        taskRepository.setTaskList(taskList);
+    }
+
+    public Task getTaskById(String taskId) {
+        return taskRepository.getTaskById(taskId);
     }
 }

@@ -5,6 +5,7 @@ import ru.atkachev.tm.api.IServiceLocator;
 public abstract class AbstractCommand {
 
     final protected IServiceLocator serviceLocate;
+
     public AbstractCommand(IServiceLocator serviceLocate){
         this.serviceLocate = serviceLocate;
     };

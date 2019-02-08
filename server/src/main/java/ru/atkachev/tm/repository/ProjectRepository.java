@@ -1,36 +1,47 @@
 package ru.atkachev.tm.repository;
 
 import ru.atkachev.tm.entity.Project;
-
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProjectRepository {
 
-    private List<Project> projectList = new ArrayList<>();
+    final private Map<String, Project> projectMap = new HashMap<>();
 
     public void createProject(String name, String description){
         final Project project = new Project();
         project.setName(name);
         project.setDescribe(description);
-        projectList.add(project);
+        projectMap.put(project.getId(), project);
     }
 
-    public void deleteProject(int index){
-        projectList.remove(index);
+    public void deleteProject(String projectId){
+        projectMap.remove(projectId);
     }
 
-    public void updateProject( int index, String name, String description ){
-        final Project project = projectList.get(index);
-        project.setName(name);
-        project.setDescribe(description);
+    public void updateProject( String projectId, String name, String description ){
+        projectMap.get(projectId).setName(name);
+        projectMap.get(projectId).setDescribe(description);
     }
 
-    public List<Project> getProjectList() {
-        return projectList;
+    public String getProjectList(){
+        StringBuilder projectStr = new StringBuilder();
+        int count = 1;
+        for(Project project : projectMap.values()){
+            projectStr.append(count + ". " + project.getName() + " " + project.getId() + "\n");
+            count++;
+        }
+        return projectStr.toString();
     }
 
-    public void setProjectList(List<Project> projectList){
-        this.projectList = projectList;
+    public Project getProjectById(String projectId){
+        return projectMap.get(projectId);
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        for (Project project : projectList) {
+            projectMap.put(project.getId(), project);
+        }
     }
 }

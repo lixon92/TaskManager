@@ -18,6 +18,10 @@ import ru.atkachev.tm.command.task.TaskPrintCommand;
 import ru.atkachev.tm.command.task.TaskUpdateCommand;
 import ru.atkachev.tm.command.user.UserCreateCommand;
 import ru.atkachev.tm.command.user.UserLogonCommand;
+import ru.atkachev.tm.endpoint.ProjectEndpoint;
+import ru.atkachev.tm.endpoint.ProjectEndpointService;
+import ru.atkachev.tm.endpoint.TaskEndpoint;
+import ru.atkachev.tm.endpoint.TaskEndpointService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +32,9 @@ public class Bootstrap implements IServiceLocator {
     final private Scanner scanner = new Scanner(System.in);
 
     private final Map<String, AbstractCommand> commands = new HashMap<>();
+
+    final private ProjectEndpoint projectEndpoint = new ProjectEndpointService().getProjectEndpointPort();
+    final private TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
 
     public void init(){
         String inputText;
@@ -54,43 +61,44 @@ public class Bootstrap implements IServiceLocator {
         registry(new HelpCommand(this));
         registry(new Helper(this));
 
-        for(;;){
+        for (;;) {
             inputText = scanner.nextLine();
             inputCommand = commands.get(inputText);
-            if ( inputCommand != null ){
-                System.out.println("[" + inputCommand.description() + "]");
+            if(inputText.equals("exit")){
+                break;
+            }else if (inputCommand != null) {
                 inputCommand.execute();
-                System.out.println("[OK]");
-            }
-            else {
+            } else {
                 System.out.println("[FAIL]");
             }
         }
     }
 
     // складывает в Мапу команды и объекты команд
-    private void registry(final AbstractCommand abstractCommand){
+    private void registry(final AbstractCommand abstractCommand) {
         commands.put(abstractCommand.command(), abstractCommand);
     }
+    @Override
+    public ProjectEndpoint getProjectEndpoint(){
+        return projectEndpoint;
+    }
+    @Override
+    public TaskEndpoint getTaskEndpoint() {
+        return taskEndpoint;
+    }
 
-    public Map <String, AbstractCommand> getCommandList(){
-        return commands;
-    }
-    public ProjectService getProjectService(){
-        return projectService;
-    }
-    public TaskService getTaskService(){
-        return taskService;
-    }
-    public String getTerminalService(){
+    public String getConsoleServiceString(){
         return scanner.nextLine();
     }
-    public UserService getUserService() {
-        return userService;
+    public int getConsoleServiceInteger(){
+        return scanner.nextInt();
     }
-    public User getCurrentUser() {
-        return currentUser;
+    public double getConsoleServiceDouble(){
+        return scanner.nextDouble();
     }
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+
+    public Map<String, AbstractCommand> getCommandList() {
+        return commands;
     }
+
+}

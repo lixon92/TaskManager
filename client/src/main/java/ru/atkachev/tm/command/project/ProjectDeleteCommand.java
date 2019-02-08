@@ -18,8 +18,8 @@ public class ProjectDeleteCommand extends AbstractCommand {
     public void execute() {
         int index;
         System.out.print("enter number of project: ");
-        index = Integer.parseInt(serviceLocate.getTerminalService()) - 1;
-        serviceLocate.getProjectService().deleteProject(index);
+        final String projectId = serviceLocate.getConsoleServiceString();
+        serviceLocate.getProjectEndpoint().deleteProject(projectId);
     }
 
     public String description() {

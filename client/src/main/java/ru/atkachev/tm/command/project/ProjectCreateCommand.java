@@ -16,10 +16,10 @@ public class ProjectCreateCommand extends AbstractCommand {
     public void execute(){
         String nameProject, descriptionProject;
         System.out.println("enter name project: ");
-        nameProject = serviceLocate.getTerminalService();
+        nameProject = serviceLocate.getConsoleServiceString();
         System.out.println("enter description project: ");
-        descriptionProject = serviceLocate.getTerminalService();
-        serviceLocate.getProjectService().createProject(nameProject, descriptionProject);
+        descriptionProject = serviceLocate.getConsoleServiceString();
+        serviceLocate.getProjectEndpoint().createProject(nameProject, descriptionProject);
     }
 
     public String description(){

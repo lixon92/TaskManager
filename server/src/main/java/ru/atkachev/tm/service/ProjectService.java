@@ -11,6 +11,10 @@ public class ProjectService {
     final private ProjectRepository projectRepository;
     final private TaskRepository taskRepository;
 
+    public Project getProjectById(String projectId) {
+        return projectRepository.getProjectById(projectId);
+    }
+
     public ProjectService(ProjectRepository projectRepository, TaskRepository taskRepository) {
         this.projectRepository = projectRepository;
         this.taskRepository = taskRepository;
@@ -20,15 +24,15 @@ public class ProjectService {
         projectRepository.createProject(name, description);
     }
 
-    public void updateProject(int index, String name, String description) {
-        projectRepository.updateProject(index, name, description);
+    public void updateProject(String projectId, String name, String description) {
+        projectRepository.updateProject(projectId, name, description);
     }
 
-    public void deleteProject(int index) {
-        projectRepository.deleteProject(index);
+    public void deleteProject(String projectId) {
+        projectRepository.deleteProject(projectId);
     }
 
-    public List<Project> getProjectList() {
+    public String getProjectList() {
         return projectRepository.getProjectList();
     }
 

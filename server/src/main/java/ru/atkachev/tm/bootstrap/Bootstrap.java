@@ -1,6 +1,7 @@
 package ru.atkachev.tm.bootstrap;
 
 import ru.atkachev.tm.endpoint.ProjectEndpoint;
+import ru.atkachev.tm.endpoint.TaskEndpoint;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.ProjectRepository;
 import ru.atkachev.tm.repository.TaskRepository;
@@ -25,13 +26,14 @@ public class Bootstrap {
     final private UserService userService = new UserService(userRepository);
 
     final private ProjectEndpoint projectEndpoint = new ProjectEndpoint(projectService);
+    final private TaskEndpoint taskEndpoint = new TaskEndpoint(taskService);
 
     final private Scanner scanner = new Scanner(System.in);
 
     public void init(){
 
-        Endpoint.publish("http://localhost:8080/TestWebService?wsdl", projectEndpoint);
+        Endpoint.publish("http://localhost:8080/ProjectService?wsdl", projectEndpoint);
+        Endpoint.publish("http://localhost:8080/TaskService?wsdl", taskEndpoint);
 
     }
-
 }

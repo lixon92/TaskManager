@@ -11,24 +11,23 @@ public class ProjectUpdateCommand extends AbstractCommand {
     }
 
     @Override
-    public String command() {
+    public String command(){
         return "pr u";
     }
 
     @Override
-    public void execute() {
-        int index;
+    public void execute(){
         String nameProject, descriptionProject;
-        System.out.println("enter number project");
-        index = Integer.parseInt(serviceLocate.getTerminalService()) - 1;
+        System.out.println("enter id project");
+        final String projectId = serviceLocate.getConsoleServiceString();
 
         System.out.println("enter new name project: ");
-        nameProject = serviceLocate.getTerminalService();
+        nameProject = serviceLocate.getConsoleServiceString();
 
         System.out.println("enter new description project: ");
-        descriptionProject = serviceLocate.getTerminalService();
+        descriptionProject = serviceLocate.getConsoleServiceString();
 
-        serviceLocate.getProjectService().updateProject(index, nameProject, descriptionProject);
+        serviceLocate.getProjectEndpoint().updateProject(projectId, nameProject, descriptionProject);
     }
 
     @Override

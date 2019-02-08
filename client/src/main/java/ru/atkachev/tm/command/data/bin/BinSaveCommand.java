@@ -2,7 +2,7 @@ package ru.atkachev.tm.command.data.bin;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
-import ru.atkachev.tm.entity.Project;
+//import ru.atkachev.tm.entity.Project;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,16 +20,16 @@ public class BinSaveCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try{
-            Project[] project = serviceLocate.getProjectService().getProjectList().toArray(new Project[0]);
-
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.bin"));
-            objectOutputStream.writeObject(project);
-            objectOutputStream.close();
-        }
-        catch (IOException e){
-            System.out.println("Error!!!");
-        }
+//        try{
+//            Project[] project = serviceLocate.getProjectService().getProjectList().toArray(new Project[0]);
+//
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.bin"));
+//            objectOutputStream.writeObject(project);
+//            objectOutputStream.close();
+//        }
+//        catch (IOException e){
+//            System.out.println("Error!!!");
+//        }
     }
 
     @Override

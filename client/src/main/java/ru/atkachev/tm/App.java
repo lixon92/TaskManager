@@ -12,7 +12,4 @@ public class App
         final Bootstrap bootstrap = new Bootstrap();
         bootstrap.init();
     }
-
-
-
 }
