@@ -2,6 +2,7 @@ package ru.atkachev.tm.command.project;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.Session;
 
 public class ProjectCreateCommand extends AbstractCommand {
 
@@ -14,12 +15,13 @@ public class ProjectCreateCommand extends AbstractCommand {
     }
 
     public void execute(){
-        String nameProject, descriptionProject;
         System.out.println("enter name project: ");
-        nameProject = serviceLocate.getConsoleServiceString();
+        final String nameProject = serviceLocate.getConsoleServiceString();
         System.out.println("enter description project: ");
-        descriptionProject = serviceLocate.getConsoleServiceString();
-        serviceLocate.getProjectEndpoint().createProject(nameProject, descriptionProject);
+        final String descriptionProject = serviceLocate.getConsoleServiceString();
+
+        final Session session = serviceLocate.getSession();
+        serviceLocate.getProjectEndpoint().createProject(session, nameProject, descriptionProject);
     }
 
     public String description(){

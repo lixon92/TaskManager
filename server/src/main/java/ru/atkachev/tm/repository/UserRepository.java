@@ -2,11 +2,10 @@ package ru.atkachev.tm.repository;
 
 import ru.atkachev.tm.entity.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class UserRepository {
-    final private List<User> userList = new ArrayList<>();
+    final private Map<String, User> userMap = new HashMap<>();
 
     public void createUser(String login, String firstName, String lastName, String password){
         User user = new User();
@@ -14,16 +13,29 @@ public class UserRepository {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPassword(password);
-        userList.add(user);
+        userMap.put(user.getID(), user);
     }
 
-    public void deleteUser(){
-        for (final User user : userList){
-
+    public boolean doesUserExist(String userLogin, String userPassword){
+        for (User user : userMap.values()){
+            if ( user.getLogin().equals(userLogin ) && user.getPassword().equals(userPassword)){
+                return true;
+            }
         }
+        return false;
     }
 
-    public List<User> getUserList(){
-        return userList;
+    public String getUserId(String userLogin, String userPassword){
+        for (User user : userMap.values()){
+            if ( user.getLogin().equals(userLogin ) && user.getPassword().equals(userPassword)){
+                return user.getID();
+            }
+        }
+        return null;
+    }
+
+
+    public Collection<User> getUserList(){
+        return userMap.values();
     }
 }

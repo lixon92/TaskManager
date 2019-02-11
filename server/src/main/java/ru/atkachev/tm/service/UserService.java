@@ -3,7 +3,7 @@ package ru.atkachev.tm.service;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.UserRepository;
 
-import java.util.List;
+import java.util.Collection;
 
 public class UserService {
     final private UserRepository userRepository;
@@ -17,6 +17,10 @@ public class UserService {
         return null;
     }
 
+    public String getUserId(String userLogin, String userPassword) {
+        return userRepository.getUserId(userLogin, userPassword);
+    }
+
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
@@ -25,8 +29,11 @@ public class UserService {
         userRepository.createUser(login, firstName, lastName, password);
     }
 
-    public List<User> getUserList() {
-        return userRepository.getUserList();
+    public boolean doesUserExist(String userLogin, String userPassword) {
+        return userRepository.doesUserExist(userLogin, userPassword);
     }
 
+    public Collection<User> getUserList() {
+        return userRepository.getUserList();
+    }
 }

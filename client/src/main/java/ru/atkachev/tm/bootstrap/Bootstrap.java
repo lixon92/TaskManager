@@ -18,10 +18,7 @@ import ru.atkachev.tm.command.task.TaskPrintCommand;
 import ru.atkachev.tm.command.task.TaskUpdateCommand;
 import ru.atkachev.tm.command.user.UserCreateCommand;
 import ru.atkachev.tm.command.user.UserLogonCommand;
-import ru.atkachev.tm.endpoint.ProjectEndpoint;
-import ru.atkachev.tm.endpoint.ProjectEndpointService;
-import ru.atkachev.tm.endpoint.TaskEndpoint;
-import ru.atkachev.tm.endpoint.TaskEndpointService;
+import ru.atkachev.tm.endpoint.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +32,10 @@ public class Bootstrap implements IServiceLocator {
 
     final private ProjectEndpoint projectEndpoint = new ProjectEndpointService().getProjectEndpointPort();
     final private TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
+    final private UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
+    final private SessionEndpoint sessionEndpoint = new SessionEndpointService().getSessionEndpointPort();
+
+    private Session session;
 
     public void init(){
         String inputText;
@@ -65,9 +66,11 @@ public class Bootstrap implements IServiceLocator {
             inputText = scanner.nextLine();
             inputCommand = commands.get(inputText);
             if(inputText.equals("exit")){
+                System.out.println("quit");
                 break;
             }else if (inputCommand != null) {
                 inputCommand.execute();
+                System.out.println("[OK]");
             } else {
                 System.out.println("[FAIL]");
             }
@@ -87,14 +90,28 @@ public class Bootstrap implements IServiceLocator {
         return taskEndpoint;
     }
 
+    public UserEndpoint getUserEndpoint() {
+        return userEndpoint;
+    }
+
+    public SessionEndpoint getSessionEndpoint() {
+        return sessionEndpoint;
+    }
+    public Session getSession() {
+        return session;
+    }
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
     public String getConsoleServiceString(){
         return scanner.nextLine();
     }
-    public int getConsoleServiceInteger(){
-        return scanner.nextInt();
-    }
     public double getConsoleServiceDouble(){
         return scanner.nextDouble();
+    }
+    public int getConsoleServiceInteger(){
+        return scanner.nextInt();
     }
 
     public Map<String, AbstractCommand> getCommandList() {

@@ -6,38 +6,43 @@ import java.util.UUID;
 
 public class Project implements Serializable {
 
-    final private Date dateCreated = new Date();
-    final private String id = UUID.randomUUID().toString();
-
+    private Date dateCreated = new Date();
+    private String id = UUID.randomUUID().toString();
     private String describe;
     private String name;
     private String userId;
-    public void setName(String name){
-        this.name = name;
+
+    public Date getDateCreated() {
+        return dateCreated;
     }
-    public String getName(){
-        return name;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public void setDescribe(String describe){
-        this.describe = describe;
-    }
-    public String getDescribe(){
-        return describe;
-    }
-
-    public String  getId(){
+    public String getId() {
         return id;
     }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public Date getDateCreated (){
-        return dateCreated;
+    public String getDescribe() {
+        return describe;
+    }
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUserId() {
         return userId;
     }
-
     public void setUserId(String userId) {
         this.userId = userId;
     }

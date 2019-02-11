@@ -1,7 +1,9 @@
 package ru.atkachev.tm.endpoint;
 
 import ru.atkachev.tm.entity.Project;
+import ru.atkachev.tm.entity.Session;
 import ru.atkachev.tm.service.ProjectService;
+import ru.atkachev.tm.util.ValidateSession;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -23,9 +25,15 @@ public class ProjectEndpoint {
     }
     @WebMethod
     public void createProject(
+            @WebParam(name = "session") Session session,
             @WebParam(name = "name")String name,
             @WebParam(name = "description")String description) {
-        projectService.createProject(name, description);
+        if(ValidateSession.validate(session)){
+            projectService.createProject(session.getUserId(), name, description);
+        }
+        else {
+            System.out.println("Session not valid");
+        }
     }
     @WebMethod
     public void updateProject(

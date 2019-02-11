@@ -9,8 +9,9 @@ public class ProjectRepository {
 
     final private Map<String, Project> projectMap = new HashMap<>();
 
-    public void createProject(String name, String description){
+    public void createProject(String userId, String name, String description){
         final Project project = new Project();
+        project.setUserId(userId);
         project.setName(name);
         project.setDescribe(description);
         projectMap.put(project.getId(), project);
