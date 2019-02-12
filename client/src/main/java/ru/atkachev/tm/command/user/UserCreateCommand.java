@@ -18,14 +18,14 @@ public class UserCreateCommand extends AbstractCommand {
     public void execute() {
 
         System.out.println("enter user login");
-        final String login = serviceLocate.getConsoleServiceString();
-        System.out.println("enter user first name");
-        final String firstName = serviceLocate.getConsoleServiceString();
-        System.out.println("enter user last name");
-        final String lastName = serviceLocate.getConsoleServiceString();
+        final String login = serviceLocator.getConsoleServiceString();
+//        System.out.println("enter user first name");
+//        final String firstName = serviceLocator.getConsoleServiceString();
+//        System.out.println("enter user last name");
+//        final String lastName = serviceLocator.getConsoleServiceString();
         System.out.println("enter user password");
-        final String password = serviceLocate.getConsoleServiceString();
-        serviceLocate.getUserEndpoint().createUser(login, firstName, lastName, password);
+        final String password = serviceLocator.getConsoleServiceString();
+        serviceLocator.getUserEndpoint().createUser(login, "", "", password);
     }
 
     public String description() {

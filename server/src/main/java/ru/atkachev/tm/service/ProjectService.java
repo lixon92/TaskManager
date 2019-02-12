@@ -6,6 +6,7 @@ import ru.atkachev.tm.repository.ProjectRepository;
 import ru.atkachev.tm.repository.TaskRepository;
 import ru.atkachev.tm.util.ValidateSession;
 
+import java.util.Collection;
 import java.util.List;
 
 import static ru.atkachev.tm.util.ValidateSession.validate;
@@ -25,7 +26,7 @@ public class ProjectService {
     }
 
     public void createProject(String userId, String name, String description) {
-            projectRepository.createProject(userId, name, description);
+        projectRepository.createProject(userId, name, description);
     }
 
     public void updateProject(String projectId, String name, String description) {
@@ -36,7 +37,7 @@ public class ProjectService {
         projectRepository.deleteProject(projectId);
     }
 
-    public String getProjectList() {
+    public Collection<Project> getProjectList() {
         return projectRepository.getProjectList();
     }
 

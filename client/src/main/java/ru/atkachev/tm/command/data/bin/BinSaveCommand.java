@@ -21,7 +21,7 @@ public class BinSaveCommand extends AbstractCommand {
     @Override
     public void execute() {
 //        try{
-//            Project[] project = serviceLocate.getProjectService().getProjectList().toArray(new Project[0]);
+//            Project[] project = serviceLocator.getProjectService().getProjectList().toArray(new Project[0]);
 //
 //            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.bin"));
 //            objectOutputStream.writeObject(project);

@@ -15,7 +15,9 @@ public class SessionEndpoint {
     }
     @WebMethod
     public Session sessionStart(
-            @WebParam(name = "userId") String userId) {
-        return sessionService.sessionStart(userId);
+            @WebParam(name = "login") String login,
+            @WebParam(name = "password")String password
+    ) {
+        return sessionService.sessionStart(login, password);
     }
 }

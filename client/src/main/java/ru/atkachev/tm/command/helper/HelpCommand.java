@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HelpCommand extends AbstractCommand {
-//    final private Map<String, AbstractCommand> commands = serviceLocate.getCommandList();
+//    final private Map<String, AbstractCommand> commands = serviceLocator.getCommandList();
 //    final private List<String> keys = new ArrayList<>(commands.keySet());
 
     public HelpCommand(IServiceLocator serviceLocate) {

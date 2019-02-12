@@ -20,15 +20,15 @@ public class TaskUpdateCommand extends AbstractCommand {
 //        String nameTask, descriptionTask;
 //
 //        System.out.println("enter number task");
-//        index = Integer.parseInt(serviceLocate.getTerminalService()) - 1;
+//        index = Integer.parseInt(serviceLocator.getTerminalService()) - 1;
 //
 //        System.out.println("enter new name task: ");
-//        nameTask = serviceLocate.getTerminalService();
+//        nameTask = serviceLocator.getTerminalService();
 //
 //        System.out.println("enter new description task: ");
-//        descriptionTask = serviceLocate.getTerminalService();
+//        descriptionTask = serviceLocator.getTerminalService();
 //
-//        serviceLocate.getTaskService().updateTask(index, nameTask, descriptionTask);
+//        serviceLocator.getTaskService().updateTask(index, nameTask, descriptionTask);
     }
 
     @Override

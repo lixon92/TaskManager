@@ -5,17 +5,18 @@ import ru.atkachev.tm.entity.Session;
 
 public class ValidateSession {
 
-    public static boolean validate(Session session){
-        if (session.getId() == null){
-            return false;
-        }
-        if (session.getUserId() == null){
-            return false;
-        }
-        if (session.getTimeStamp() != 0) {
-            return false;
-        }
-        return session.getSign().equals(sign(session.getId(), session.getUserId(), session.getTimeStamp()));
+    public static void validate(Session session){
+        if (session == null) throw new RuntimeException();
+        if (session.getId() == null) throw new RuntimeException();
+        if (session.getUserId() == null) throw new RuntimeException();
+        if (session.getTimeStamp() == 0) throw new RuntimeException();
+        if (!session.getSign().equals(
+            ValidateSession.sign(
+                session.getId(),
+                session.getUserId(),
+                session.getTimeStamp()
+            )
+        )) throw new RuntimeException();
     }
 
     public static String sign(String sessionId, String userId, long timeStamp){

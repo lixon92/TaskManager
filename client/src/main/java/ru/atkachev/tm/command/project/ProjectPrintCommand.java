@@ -2,6 +2,8 @@ package ru.atkachev.tm.command.project;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.Project;
+import ru.atkachev.tm.endpoint.Session;
 
 public class ProjectPrintCommand extends AbstractCommand {
 
@@ -14,14 +16,17 @@ public class ProjectPrintCommand extends AbstractCommand {
     }
 
     public void execute(){
-        String projects = serviceLocate.getProjectEndpoint().getProjectList();
-        System.out.println(projects.toString());
-//        if (projects.isEmpty()){
-//            System.out.println("Empty");
-//        }
-//        for ( int i = 0; i < projects.size(); i++ ){
-//            System.out.printf("%s. %s %.8s%n", i + 1, projects.get(i).getName(), projects.get(i).getId());
-//        }
+
+        final Session session = serviceLocator.getSession();
+        if (serviceLocator.getProjectEndpoint().getProjectList(session).isEmpty()){
+            System.out.println("Empty");
+        }
+        int index = 1;
+        for (Project project : serviceLocator.getProjectEndpoint().getProjectList(session) ){
+            System.out.printf("%d. %s %.8s %.8s %n", index,
+                    project.getName(), project.getId(), project.getUserId());
+            index++;
+        }
     }
 
     public String description(){

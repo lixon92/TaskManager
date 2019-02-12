@@ -2,6 +2,7 @@ package ru.atkachev.tm.bootstrap;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.command.ExitCommand;
 import ru.atkachev.tm.command.data.bin.BinLoadCommand;
 import ru.atkachev.tm.command.data.bin.BinSaveCommand;
 import ru.atkachev.tm.command.data.json.JSONSaveCommand;
@@ -61,19 +62,21 @@ public class Bootstrap implements IServiceLocator {
 
         registry(new HelpCommand(this));
         registry(new Helper(this));
+        registry(new ExitCommand(this));
 
         for (;;) {
             inputText = scanner.nextLine();
             inputCommand = commands.get(inputText);
-            if(inputText.equals("exit")){
-                System.out.println("quit");
-                break;
-            }else if (inputCommand != null) {
+            if (inputCommand != null) {
+                if(inputCommand.isSecure() && session == null){
+                    System.out.println("Access denied");
+                    continue;
+                }
                 inputCommand.execute();
                 System.out.println("[OK]");
-            } else {
-                System.out.println("[FAIL]");
+                continue;
             }
+            System.out.println("[FAIL]");
         }
     }
 
@@ -81,10 +84,12 @@ public class Bootstrap implements IServiceLocator {
     private void registry(final AbstractCommand abstractCommand) {
         commands.put(abstractCommand.command(), abstractCommand);
     }
+
     @Override
     public ProjectEndpoint getProjectEndpoint(){
         return projectEndpoint;
     }
+
     @Override
     public TaskEndpoint getTaskEndpoint() {
         return taskEndpoint;

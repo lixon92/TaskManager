@@ -21,23 +21,23 @@ public class Helper extends AbstractCommand {
     @Override
     public void execute() {
 
-//        serviceLocate.getUserService().createUser("f", "Alex", "", "f");
-//        final User user = serviceLocate.getUserService().findUser("f", "f");
-//        serviceLocate.setCurrentUser(user);
+//        serviceLocator.getUserService().createUser("f", "Alex", "", "f");
+//        final User user = serviceLocator.getUserService().findUser("f", "f");
+//        serviceLocator.setCurrentUser(user);
 //
-//        serviceLocate.getProjectService().createProject("Project_test1", "");
-//        serviceLocate.getProjectService().createProject("Project_test2", "");
+//        serviceLocator.getProjectService().createProject("Project_test1", "");
+//        serviceLocator.getProjectService().createProject("Project_test2", "");
 //
-//        serviceLocate.getTaskService().createTask("", "Task_test1", "");
-//        serviceLocate.getTaskService().createTask("", "Task_test2", "");
+//        serviceLocator.getTaskService().createTask("", "Task_test1", "");
+//        serviceLocator.getTaskService().createTask("", "Task_test2", "");
 //
-//        List<Project> projects = serviceLocate.getProjectService().getProjectList();
+//        List<Project> projects = serviceLocator.getProjectService().getProjectList();
 //
 //        for ( int i = 0; i < projects.size(); i++ ){
 //            System.out.println( i + 1 + ". " + projects.get(i).getName() + " " + projects.get(i).getId());
 //        }
 //
-//        List<Task> taskList = serviceLocate.getTaskService().getTaskList();
+//        List<Task> taskList = serviceLocator.getTaskService().getTaskList();
 //
 //        int index = 0;
 //        for (Task task : taskList){

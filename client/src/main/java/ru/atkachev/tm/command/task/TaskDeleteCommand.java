@@ -18,8 +18,8 @@ public class TaskDeleteCommand extends AbstractCommand {
     public void execute() {
 //        int index;
 //        System.out.print("enter number of task: ");
-//        index = Integer.parseInt(serviceLocate.getTerminalService()) - 1;
-//        serviceLocate.getTaskService().deleteTask(index);
+//        index = Integer.parseInt(serviceLocator.getTerminalService()) - 1;
+//        serviceLocator.getTaskService().deleteTask(index);
     }
 
     @Override

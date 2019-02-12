@@ -22,7 +22,7 @@ public class JSONSaveCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-//        Project[] projects = serviceLocate.getProjectService().getProjectList().toArray(new Project[0]);
+//        Project[] projects = serviceLocator.getProjectService().getProjectList().toArray(new Project[0]);
 //        ObjectMapper mapper = new ObjectMapper();
 //        File file = new File("temp.json");
 //        try {

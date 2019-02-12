@@ -4,10 +4,10 @@ import ru.atkachev.tm.api.IServiceLocator;
 
 public abstract class AbstractCommand {
 
-    final protected IServiceLocator serviceLocate;
+    final protected IServiceLocator serviceLocator;
 
-    public AbstractCommand(IServiceLocator serviceLocate){
-        this.serviceLocate = serviceLocate;
+    public AbstractCommand(IServiceLocator serviceLocator){
+        this.serviceLocator = serviceLocator;
     };
     public abstract String command();
     public abstract void execute();

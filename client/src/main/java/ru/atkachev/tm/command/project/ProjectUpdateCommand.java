@@ -2,9 +2,9 @@ package ru.atkachev.tm.command.project;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.Session;
 
 public class ProjectUpdateCommand extends AbstractCommand {
-
 
     public ProjectUpdateCommand(IServiceLocator serviceLocate) {
         super(serviceLocate);
@@ -19,15 +19,16 @@ public class ProjectUpdateCommand extends AbstractCommand {
     public void execute(){
         String nameProject, descriptionProject;
         System.out.println("enter id project");
-        final String projectId = serviceLocate.getConsoleServiceString();
+        final String projectId = serviceLocator.getConsoleServiceString();
 
         System.out.println("enter new name project: ");
-        nameProject = serviceLocate.getConsoleServiceString();
+        nameProject = serviceLocator.getConsoleServiceString();
 
         System.out.println("enter new description project: ");
-        descriptionProject = serviceLocate.getConsoleServiceString();
+        descriptionProject = serviceLocator.getConsoleServiceString();
 
-        serviceLocate.getProjectEndpoint().updateProject(projectId, nameProject, descriptionProject);
+        final Session session = serviceLocator.getSession();
+        serviceLocator.getProjectEndpoint().updateProject(session, projectId, nameProject, descriptionProject);
     }
 
     @Override

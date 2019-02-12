@@ -16,12 +16,12 @@ public class ProjectCreateCommand extends AbstractCommand {
 
     public void execute(){
         System.out.println("enter name project: ");
-        final String nameProject = serviceLocate.getConsoleServiceString();
+        final String nameProject = serviceLocator.getConsoleServiceString();
         System.out.println("enter description project: ");
-        final String descriptionProject = serviceLocate.getConsoleServiceString();
+        final String descriptionProject = serviceLocator.getConsoleServiceString();
 
-        final Session session = serviceLocate.getSession();
-        serviceLocate.getProjectEndpoint().createProject(session, nameProject, descriptionProject);
+        final Session session = serviceLocator.getSession();
+        serviceLocator.getProjectEndpoint().createProject(session, nameProject, descriptionProject);
     }
 
     public String description(){

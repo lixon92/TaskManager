@@ -18,6 +18,10 @@ public class Session {
         this.sign = ValidateSession.sign(id, userId, timeStamp);
     }
 
+    public Session(){
+
+    }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }

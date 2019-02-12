@@ -21,15 +21,15 @@ public class Bootstrap {
 
     private User currentUser;
 
-    final private TaskRepository taskRepository = new TaskRepository();
     final private ProjectRepository projectRepository = new ProjectRepository();
+    final private TaskRepository taskRepository = new TaskRepository();
     final private UserRepository userRepository = new UserRepository();
     final private SessionRepository sessionRepository = new SessionRepository();
 
     final private TaskService taskService = new TaskService(taskRepository);
-    final private ProjectService projectService = new ProjectService(projectRepository, taskRepository);
     final private UserService userService = new UserService(userRepository);
-    final private SessionService sessionService = new SessionService(sessionRepository);
+    final private SessionService sessionService = new SessionService(sessionRepository, userRepository);
+    final private ProjectService projectService = new ProjectService(projectRepository, taskRepository);
 
     final private ProjectEndpoint projectEndpoint = new ProjectEndpoint(projectService);
     final private TaskEndpoint taskEndpoint = new TaskEndpoint(taskService);

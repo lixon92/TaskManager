@@ -1,6 +1,8 @@
 package ru.atkachev.tm.repository;
 
 import ru.atkachev.tm.entity.Project;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,19 +23,13 @@ public class ProjectRepository {
         projectMap.remove(projectId);
     }
 
-    public void updateProject( String projectId, String name, String description ){
+    public void updateProject(String projectId, String name, String description ){
         projectMap.get(projectId).setName(name);
         projectMap.get(projectId).setDescribe(description);
     }
 
-    public String getProjectList(){
-        StringBuilder projectStr = new StringBuilder();
-        int count = 1;
-        for(Project project : projectMap.values()){
-            projectStr.append(count + ". " + project.getName() + " " + project.getId() + "\n");
-            count++;
-        }
-        return projectStr.toString();
+    public Collection<Project> getProjectList(){
+        return projectMap.values();
     }
 
     public Project getProjectById(String projectId){

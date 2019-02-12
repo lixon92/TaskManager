@@ -14,7 +14,7 @@ public class TaskPrintCommand  extends AbstractCommand {
     }
 
     public void execute() {
-        String tasks = serviceLocate.getTaskEndpoint().getTaskList();
+        String tasks = serviceLocator.getTaskEndpoint().getTaskList();
         System.out.println(tasks);
     }
 

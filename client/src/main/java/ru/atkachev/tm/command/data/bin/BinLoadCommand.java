@@ -29,7 +29,7 @@ public class BinLoadCommand extends AbstractCommand {
 //            for (Project project : projects) {
 //                projectList.add(project);
 //            }
-//            serviceLocate.getProjectService().setProjectList(projectList);
+//            serviceLocator.getProjectService().setProjectList(projectList);
 //            objectInputStream.close();
 //        }catch (IOException e){
 //            System.out.println("Error!!!IOException");
