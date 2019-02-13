@@ -6,6 +6,7 @@ import ru.atkachev.tm.command.ExitCommand;
 import ru.atkachev.tm.command.data.bin.BinLoadCommand;
 import ru.atkachev.tm.command.data.bin.BinSaveCommand;
 import ru.atkachev.tm.command.data.json.JSONSaveCommand;
+import ru.atkachev.tm.command.data.xml.XMLLoadCommand;
 import ru.atkachev.tm.command.data.xml.XMLSaveCommand;
 import ru.atkachev.tm.command.helper.HelpCommand;
 import ru.atkachev.tm.command.helper.Helper;
@@ -35,6 +36,7 @@ public class Bootstrap implements IServiceLocator {
     final private TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
     final private UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
     final private SessionEndpoint sessionEndpoint = new SessionEndpointService().getSessionEndpointPort();
+    final private DomainEndpoint domainEndpoint = new DomainEndpointService().getDomainEndpointPort();
 
     private Session session;
 
@@ -58,6 +60,7 @@ public class Bootstrap implements IServiceLocator {
         registry(new BinSaveCommand(this));
         registry(new BinLoadCommand(this));
         registry(new XMLSaveCommand(this));
+        registry(new XMLLoadCommand(this));
         registry(new JSONSaveCommand(this));
 
         registry(new HelpCommand(this));
@@ -89,22 +92,28 @@ public class Bootstrap implements IServiceLocator {
     public ProjectEndpoint getProjectEndpoint(){
         return projectEndpoint;
     }
-
     @Override
     public TaskEndpoint getTaskEndpoint() {
         return taskEndpoint;
     }
-
+    @Override
     public UserEndpoint getUserEndpoint() {
         return userEndpoint;
     }
-
+    @Override
     public SessionEndpoint getSessionEndpoint() {
         return sessionEndpoint;
     }
+    @Override
+    public DomainEndpoint getDomainEndpoint() {
+        return domainEndpoint;
+    }
+
+    @Override
     public Session getSession() {
         return session;
     }
+    @Override
     public void setSession(Session session) {
         this.session = session;
     }
@@ -122,5 +131,4 @@ public class Bootstrap implements IServiceLocator {
     public Map<String, AbstractCommand> getCommandList() {
         return commands;
     }
-
 }

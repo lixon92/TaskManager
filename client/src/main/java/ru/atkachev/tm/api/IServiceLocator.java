@@ -8,9 +8,10 @@ public interface IServiceLocator {
     TaskEndpoint getTaskEndpoint();
     UserEndpoint getUserEndpoint();
     SessionEndpoint getSessionEndpoint();
-    public Session getSession();
-    public void setSession(Session session);
+    DomainEndpoint getDomainEndpoint();
 
+    Session getSession();
+    void setSession(Session session);
 
     public String getConsoleServiceString();
     public int getConsoleServiceInteger();

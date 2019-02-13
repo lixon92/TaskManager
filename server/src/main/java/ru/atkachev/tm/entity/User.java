@@ -10,6 +10,7 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String login;
+    private Role role = Role.USER;
 
     public String getID() {
         return ID;

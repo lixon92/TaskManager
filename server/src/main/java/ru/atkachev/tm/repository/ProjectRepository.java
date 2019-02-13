@@ -36,7 +36,7 @@ public class ProjectRepository {
         return projectMap.get(projectId);
     }
 
-    public void setProjectList(List<Project> projectList) {
+    public void setProjectList(Collection<Project> projectList) {
         for (Project project : projectList) {
             projectMap.put(project.getId(), project);
         }

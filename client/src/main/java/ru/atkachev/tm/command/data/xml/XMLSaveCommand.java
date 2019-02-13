@@ -19,14 +19,7 @@ public class XMLSaveCommand extends AbstractCommand {
 
     @Override
     public void execute(){
-//        Project[] projects = serviceLocator.getProjectService().getProjectList().toArray(new Project[0]);
-//        XmlMapper xmlMapper = new XmlMapper();
-//        File file = new File("temp.xml");
-//        try {
-//            xmlMapper.writeValue(file, projects);
-//        } catch (IOException e){
-//            System.out.println("IOException!!!");
-//        }
+        serviceLocator.getDomainEndpoint().xmlSave();
     }
 
     @Override
