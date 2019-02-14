@@ -23,7 +23,7 @@ public class ProjectPrintCommand extends AbstractCommand {
         }
         int index = 1;
         for (Project project : serviceLocator.getProjectEndpoint().getProjectList(session) ){
-            System.out.printf("%d. %s %.8s %.8s %n", index,
+            System.out.printf("%d. %s %s %s %n", index,
                     project.getName(), project.getId(), project.getUserId());
             index++;
         }

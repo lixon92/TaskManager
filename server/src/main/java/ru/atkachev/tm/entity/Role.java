@@ -1,6 +1,6 @@
 package ru.atkachev.tm.entity;
 
-enum Role {
+public enum Role {
     ADMIN,
     USER
 }

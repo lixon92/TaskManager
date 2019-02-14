@@ -8,6 +8,7 @@ import ru.atkachev.tm.util.ValidateSession;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class ProjectEndpoint {
     public void deleteProject(
         @WebParam(name = "session") Session session,
         @WebParam(name = "projectId")String projectId
-    ) {
+    ) throws IOException {
         ValidateSession.validate(session);
         projectService.deleteProject(projectId);
     }

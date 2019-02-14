@@ -6,6 +6,7 @@ import ru.atkachev.tm.repository.ProjectRepository;
 import ru.atkachev.tm.repository.TaskRepository;
 import ru.atkachev.tm.util.ValidateSession;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class ProjectService {
         projectRepository.updateProject(projectId, name, description);
     }
 
-    public void deleteProject(String projectId) {
+    public void deleteProject(String projectId) throws IOException {
+        if(projectRepository.getProjectById(projectId) == null) throw new IOException();
         projectRepository.deleteProject(projectId);
     }
 

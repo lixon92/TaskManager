@@ -8,6 +8,10 @@ import java.util.Collection;
 public class UserService {
     final private UserRepository userRepository;
 
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
+
     public User findUser(String userLogin, String userPassword){
         for(User user : userRepository.getUserList() ){
             if (user.getLogin().equals(userLogin) && user.getPassword().equals(userPassword)){
@@ -19,10 +23,6 @@ public class UserService {
 
     public String getUserId(String userLogin, String userPassword) {
         return userRepository.getUserId(userLogin, userPassword);
-    }
-
-    public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
     }
 
     public void createUser(String login, String firstName, String lastName, String password) {

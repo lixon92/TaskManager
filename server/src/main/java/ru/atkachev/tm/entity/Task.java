@@ -6,47 +6,52 @@ import java.util.UUID;
 
 public class Task implements Serializable {
 
-    final private Date dateCreated = new Date();
-    final private String id = UUID.randomUUID().toString();
+    private Date dateCreated = new Date();
+    private String id = UUID.randomUUID().toString();
     private String UserID;
     private String projectId;
     private String describe;
     private String name;
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public Date getDateCreated() {
+        return dateCreated;
     }
-    public String getProjectId() {
-        return projectId;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-    public String getName(){
-        return name;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public void setDescribe(String describe){
-        this.describe = describe;
+    public String getId() {
+        return id;
     }
-    public String getDescribe(){
-        return describe;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setUserID(String userID) {
-        UserID = userID;
-    }
     public String getUserID() {
         return UserID;
     }
-
-    public String  getId(){
-        return id;
+    public void setUserID(String userID) {
+        UserID = userID;
     }
 
-    public Date getDateCreated (){
-        return dateCreated;
+    public String getProjectId() {
+        return projectId;
+    }
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
+    public String getDescribe() {
+        return describe;
+    }
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 }

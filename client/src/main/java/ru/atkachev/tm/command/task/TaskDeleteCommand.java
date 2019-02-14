@@ -2,6 +2,7 @@ package ru.atkachev.tm.command.task;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.Session;
 
 public class TaskDeleteCommand extends AbstractCommand {
 
@@ -15,11 +16,17 @@ public class TaskDeleteCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute() {
-//        int index;
-//        System.out.print("enter number of task: ");
-//        index = Integer.parseInt(serviceLocator.getTerminalService()) - 1;
-//        serviceLocator.getTaskService().deleteTask(index);
+    public void execute(){
+        final Session session = serviceLocator.getSession();
+
+        System.out.print("enter id of task: ");
+        final String taskId = serviceLocator.getConsoleServiceString();
+
+        try{
+            serviceLocator.getTaskEndpoint().deleteTask(session, taskId);
+        } catch (ru.atkachev.tm.endpoint.IOException_Exception e){
+            System.out.println("Задача не найдена.");
+        }
     }
 
     @Override
