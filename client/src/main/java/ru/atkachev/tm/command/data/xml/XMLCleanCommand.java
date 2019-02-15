@@ -4,28 +4,28 @@ import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.endpoint.IOException_Exception;
 
-public class XMLLoadCommand extends AbstractCommand {
-    public XMLLoadCommand(IServiceLocator serviceLocator) {
+public class XMLCleanCommand extends AbstractCommand {
+    public XMLCleanCommand(IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 
     @Override
     public String command() {
-        return "l x";
+        return "c x";
     }
 
     @Override
     public void execute() {
         try {
-            serviceLocator.getDomainEndpoint().xmlLoad();
+            serviceLocator.getDomainEndpoint().xmlClean();
         } catch (IOException_Exception e) {
-            System.out.println("Error load!");
+            System.out.println("Error clean");
         }
     }
 
     @Override
     public String description() {
-        return "Load serialise";
+        return "clean all";
     }
 
     @Override

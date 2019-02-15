@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.IOException_Exception;
 //import ru.atkachev.tm.entity.Project;
 
 import java.io.File;
@@ -17,19 +18,16 @@ public class JSONSaveCommand extends AbstractCommand {
 
     @Override
     public String command() {
-        return "j s";
+        return "s j";
     }
 
     @Override
     public void execute() {
-//        Project[] projects = serviceLocator.getProjectService().getProjectList().toArray(new Project[0]);
-//        ObjectMapper mapper = new ObjectMapper();
-//        File file = new File("temp.json");
-//        try {
-//            mapper.writeValue(file, projects);
-//        } catch (IOException e){
-//            System.out.println("IOException!!!");
-//        }
+        try {
+            serviceLocator.getDomainEndpoint().jsonSave();
+        } catch (IOException_Exception e) {
+            System.out.println("Error save!");
+        }
     }
 
     @Override

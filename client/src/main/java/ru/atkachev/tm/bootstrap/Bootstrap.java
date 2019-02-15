@@ -5,7 +5,10 @@ import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.command.ExitCommand;
 import ru.atkachev.tm.command.data.bin.BinLoadCommand;
 import ru.atkachev.tm.command.data.bin.BinSaveCommand;
+import ru.atkachev.tm.command.data.json.JSONCleanCommand;
+import ru.atkachev.tm.command.data.json.JSONLoadCommand;
 import ru.atkachev.tm.command.data.json.JSONSaveCommand;
+import ru.atkachev.tm.command.data.xml.XMLCleanCommand;
 import ru.atkachev.tm.command.data.xml.XMLLoadCommand;
 import ru.atkachev.tm.command.data.xml.XMLSaveCommand;
 import ru.atkachev.tm.command.helper.HelpCommand;
@@ -22,6 +25,7 @@ import ru.atkachev.tm.command.user.UserCreateCommand;
 import ru.atkachev.tm.command.user.UserLogonCommand;
 import ru.atkachev.tm.endpoint.*;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -29,15 +33,12 @@ import java.util.Scanner;
 public class Bootstrap implements IServiceLocator {
 
     final private Scanner scanner = new Scanner(System.in);
-
-    private final Map<String, AbstractCommand> commands = new HashMap<>();
-
+    final private Map<String, AbstractCommand> commands = new HashMap<>();
     final private ProjectEndpoint projectEndpoint = new ProjectEndpointService().getProjectEndpointPort();
     final private TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
     final private UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
     final private SessionEndpoint sessionEndpoint = new SessionEndpointService().getSessionEndpointPort();
     final private DomainEndpoint domainEndpoint = new DomainEndpointService().getDomainEndpointPort();
-
     private Session session;
 
     public void init(){
@@ -59,9 +60,14 @@ public class Bootstrap implements IServiceLocator {
 
         registry(new BinSaveCommand(this));
         registry(new BinLoadCommand(this));
+
         registry(new XMLSaveCommand(this));
         registry(new XMLLoadCommand(this));
+        registry(new XMLCleanCommand(this));
+
         registry(new JSONSaveCommand(this));
+        registry(new JSONLoadCommand(this));
+        registry(new JSONCleanCommand(this));
 
         registry(new HelpCommand(this));
         registry(new Helper(this));
@@ -70,7 +76,7 @@ public class Bootstrap implements IServiceLocator {
         for (;;) {
             inputText = scanner.nextLine();
             inputCommand = commands.get(inputText);
-            if (inputCommand != null) {
+            if (inputCommand != null){
                 if(inputCommand.isSecure() && session == null){
                     System.out.println("Access denied");
                     continue;
@@ -128,7 +134,7 @@ public class Bootstrap implements IServiceLocator {
         return scanner.nextInt();
     }
 
-    public Map<String, AbstractCommand> getCommandList() {
-        return commands;
+    public Collection<AbstractCommand> getCommandList() {
+        return commands.values();
     }
 }

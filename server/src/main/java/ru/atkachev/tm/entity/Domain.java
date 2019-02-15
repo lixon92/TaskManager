@@ -1,8 +1,9 @@
 package ru.atkachev.tm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class Domain {
+public class Domain implements Serializable {
 
     private Collection<Project> projects;
     private Collection<Task> tasks;

@@ -2,6 +2,8 @@ package ru.atkachev.tm.command.data.bin;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.ClassNotFoundException_Exception;
+import ru.atkachev.tm.endpoint.IOException_Exception;
 //import ru.atkachev.tm.entity.Project;
 
 import java.io.FileInputStream;
@@ -22,20 +24,11 @@ public class BinLoadCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-//        try{
-//            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("person.bin"));
-//            final Project[] projects = (Project[]) objectInputStream.readObject();
-//            final List<Project> projectList = new ArrayList<>();
-//            for (Project project : projects) {
-//                projectList.add(project);
-//            }
-//            serviceLocator.getProjectService().setProjectList(projectList);
-//            objectInputStream.close();
-//        }catch (IOException e){
-//            System.out.println("Error!!! IOException");
-//        }catch (ClassNotFoundException e){
-//            System.out.println("Error!!! ClassNotFound");
-//        }
+        try {
+            serviceLocator.getDomainEndpoint().binLoad();
+        } catch (IOException_Exception | ClassNotFoundException_Exception e) {
+            System.out.println("Error load bin");
+        }
     }
 
     @Override

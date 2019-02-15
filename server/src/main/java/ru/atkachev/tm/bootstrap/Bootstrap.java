@@ -1,19 +1,15 @@
 package ru.atkachev.tm.bootstrap;
 
 import ru.atkachev.tm.endpoint.*;
-import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.ProjectRepository;
 import ru.atkachev.tm.repository.SessionRepository;
 import ru.atkachev.tm.repository.TaskRepository;
 import ru.atkachev.tm.repository.UserRepository;
 import ru.atkachev.tm.service.*;
-
 import javax.xml.ws.Endpoint;
 import java.util.*;
 
 public class Bootstrap {
-
-    private User currentUser;
 
     final private ProjectRepository projectRepository = new ProjectRepository();
     final private TaskRepository taskRepository = new TaskRepository();

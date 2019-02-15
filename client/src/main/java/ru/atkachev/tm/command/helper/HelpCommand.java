@@ -21,13 +21,10 @@ public class HelpCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute() {
-//
-//       for(int i = 0; i < keys.size(); i++) {
-//           String key = keys.get(i);
-//           String description = commands.get(key).description();
-//           System.out.printf("%-10s %-10s%n", key, description);
-//       }
+    public void execute(){
+       for( AbstractCommand command : serviceLocator.getCommandList() ) {
+           System.out.printf("%-10s %-10s%n", command.command(), command.description());
+       }
     }
 
     @Override

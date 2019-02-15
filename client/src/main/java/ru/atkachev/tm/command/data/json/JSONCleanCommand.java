@@ -1,31 +1,31 @@
-package ru.atkachev.tm.command.data.xml;
+package ru.atkachev.tm.command.data.json;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.endpoint.IOException_Exception;
 
-public class XMLLoadCommand extends AbstractCommand {
-    public XMLLoadCommand(IServiceLocator serviceLocator) {
+public class JSONCleanCommand extends AbstractCommand {
+    public JSONCleanCommand(IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 
     @Override
     public String command() {
-        return "l x";
+        return "c j";
     }
 
     @Override
     public void execute() {
         try {
-            serviceLocator.getDomainEndpoint().xmlLoad();
+            serviceLocator.getDomainEndpoint().jsonClean();
         } catch (IOException_Exception e) {
-            System.out.println("Error load!");
+            System.out.println("Error clean!");
         }
     }
 
     @Override
     public String description() {
-        return "Load serialise";
+        return "clean json";
     }
 
     @Override

@@ -3,6 +3,7 @@ package ru.atkachev.tm.command.data.xml;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.IOException_Exception;
 //import ru.atkachev.tm.entity.Project;
 
 import java.io.File;
@@ -19,7 +20,11 @@ public class XMLSaveCommand extends AbstractCommand {
 
     @Override
     public void execute(){
-        serviceLocator.getDomainEndpoint().xmlSave();
+        try {
+            serviceLocator.getDomainEndpoint().xmlSave();
+        } catch (IOException_Exception e) {
+            System.out.println("Error save!");
+        }
     }
 
     @Override
