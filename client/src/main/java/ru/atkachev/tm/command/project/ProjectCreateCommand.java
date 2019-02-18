@@ -6,7 +6,7 @@ import ru.atkachev.tm.endpoint.Session;
 
 public class ProjectCreateCommand extends AbstractCommand {
 
-    public ProjectCreateCommand(IServiceLocator serviceLocate){
+    public ProjectCreateCommand(final IServiceLocator serviceLocate){
         super(serviceLocate);
     };
 
@@ -17,11 +17,11 @@ public class ProjectCreateCommand extends AbstractCommand {
     public void execute(){
         System.out.println("enter name project: ");
         final String nameProject = serviceLocator.getConsoleServiceString();
-        System.out.println("enter description project: ");
-        final String descriptionProject = serviceLocator.getConsoleServiceString();
+//        System.out.println("enter description project: ");
+//        final String descriptionProject = serviceLocator.getConsoleServiceString();
 
         final Session session = serviceLocator.getSession();
-        serviceLocator.getProjectEndpoint().createProject(session, nameProject, descriptionProject);
+        serviceLocator.getProjectEndpoint().createProject(session, nameProject, "test");
     }
 
     public String description(){

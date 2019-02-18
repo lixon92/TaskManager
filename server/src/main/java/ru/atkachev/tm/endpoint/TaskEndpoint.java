@@ -16,16 +16,16 @@ import java.util.List;
 @WebService
 public class TaskEndpoint {
     final private TaskService taskService;
-    public TaskEndpoint(TaskService taskService){
+    public TaskEndpoint(final TaskService taskService){
         this.taskService = taskService;
     }
 
     @WebMethod
     public void createTask(
-            @WebParam(name = "session") Session session,
-            @WebParam(name = "projectId")String projectId,
-            @WebParam(name = "name")String name,
-            @WebParam(name = "description")String description
+            @WebParam(name = "session") final Session session,
+            @WebParam(name = "projectId")final String projectId,
+            @WebParam(name = "name") final String name,
+            @WebParam(name = "description") final String description
     ) throws IOException {
         ValidateSession.validate(session);
         taskService.createTask(session.getUserId(), projectId, name, description);
@@ -33,8 +33,8 @@ public class TaskEndpoint {
 
     @WebMethod
     public void deleteTask(
-            @WebParam(name = "session") Session session,
-            @WebParam(name = "taskId")String taskId
+            @WebParam(name = "session") final Session session,
+            @WebParam(name = "taskId") final String taskId
     ) throws IOException {
         ValidateSession.validate(session);
         taskService.deleteTask(taskId);
@@ -42,10 +42,10 @@ public class TaskEndpoint {
 
     @WebMethod
     public void updateTask(
-            @WebParam(name = "session") Session session,
-            @WebParam(name = "taskId")String taskId,
-            @WebParam(name = "name")String name,
-            @WebParam(name = "description")String description
+            @WebParam(name = "session") final Session session,
+            @WebParam(name = "taskId") final String taskId,
+            @WebParam(name = "name") final String name,
+            @WebParam(name = "description") final String description
     ) {
         ValidateSession.validate(session);
         taskService.updateTask(taskId, name, description);
@@ -61,8 +61,8 @@ public class TaskEndpoint {
 
     @WebMethod
     public void setTaskList(
-            @WebParam(name = "session") Session session,
-            @WebParam(name = "taskList")List<Task> taskList
+            @WebParam(name = "session") final Session session,
+            @WebParam(name = "taskList") final List<Task> taskList
     ) {
         ValidateSession.validate(session);
         taskService.setTaskList(taskList);
@@ -70,8 +70,8 @@ public class TaskEndpoint {
 
     @WebMethod
     public Task getTaskById(
-            @WebParam(name = "session") Session session,
-            @WebParam(name = "taskId")String taskId
+            @WebParam(name = "session") final Session session,
+            @WebParam(name = "taskId") final String taskId
     ) {
         ValidateSession.validate(session);
         return taskService.getTaskById(taskId);

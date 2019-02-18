@@ -11,7 +11,7 @@ public class ProjectRepository {
 
     final private Map<String, Project> projectMap = new HashMap<>();
 
-    public void createProject(String userId, String name, String description){
+    public void createProject(final String userId, final String name, final String description){
         final Project project = new Project();
         project.setUserId(userId);
         project.setName(name);
@@ -19,11 +19,11 @@ public class ProjectRepository {
         projectMap.put(project.getId(), project);
     }
 
-    public void deleteProject(String projectId){
+    public void deleteProject(final String projectId){
         projectMap.remove(projectId);
     }
 
-    public void updateProject(String projectId, String name, String description ){
+    public void updateProject(final String projectId, final String name, final String description ){
         projectMap.get(projectId).setName(name);
         projectMap.get(projectId).setDescribe(description);
     }
@@ -32,12 +32,12 @@ public class ProjectRepository {
         return projectMap.values();
     }
 
-    public Project getProjectById(String projectId){
+    public Project getProjectById(final String projectId){
         return projectMap.get(projectId);
     }
 
-    public void setProjectList(Collection<Project> projectList) {
-        for (Project project : projectList) {
+    public void setProjectList(final Collection<Project> projectList) {
+        for (final Project project : projectList) {
             projectMap.put(project.getId(), project);
         }
     }

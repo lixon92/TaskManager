@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class XMLSaveCommand extends AbstractCommand {
-    public XMLSaveCommand(IServiceLocator serviceLocate) {
+    public XMLSaveCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 

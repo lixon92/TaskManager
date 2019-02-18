@@ -11,7 +11,7 @@ public class Session {
     private long timeStamp;
     private String sign;
 
-    public Session(String userId){
+    public Session(final String userId){
         this.userId = userId;
         this.id = UUID.randomUUID().toString();
         this.timeStamp = System.currentTimeMillis();
@@ -22,28 +22,28 @@ public class Session {
 
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(final String userId) {
         this.userId = userId;
     }
     public String getUserId() {
         return userId;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
     public String getId() {
         return id;
     }
 
-    public void setSign(String sign) {
+    public void setSign(final String sign) {
         this.sign = sign;
     }
     public String getSign() {
         return sign;
     }
 
-    public void setTimeStamp(long timeStamp) {
+    public void setTimeStamp(final long timeStamp) {
         this.timeStamp = timeStamp;
     }
     public long getTimeStamp() {

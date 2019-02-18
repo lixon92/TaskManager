@@ -7,7 +7,7 @@ import ru.atkachev.tm.endpoint.Session;
 
 public class TaskCreateCommand extends AbstractCommand {
 
-    public TaskCreateCommand(IServiceLocator serviceLocate) {
+    public TaskCreateCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 
@@ -21,14 +21,12 @@ public class TaskCreateCommand extends AbstractCommand {
 
         System.out.println("enter name of task");
         final String nameTask = serviceLocator.getConsoleServiceString();
-
-        System.out.println("enter description of task");
-        final String descriptionTask = serviceLocator.getConsoleServiceString();
-
+//        System.out.println("enter description of task");
+//        final String descriptionTask = serviceLocator.getConsoleServiceString();
         final Session session = serviceLocator.getSession();
 
         try{
-            serviceLocator.getTaskEndpoint().createTask( session,projectId, nameTask, descriptionTask);
+            serviceLocator.getTaskEndpoint().createTask( session,projectId, nameTask, "test");
         }catch (ru.atkachev.tm.endpoint.IOException_Exception e){
             System.out.println("Проект не найден");
         }

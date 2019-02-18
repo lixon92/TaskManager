@@ -7,7 +7,6 @@ import ru.atkachev.tm.repository.TaskRepository;
 import ru.atkachev.tm.repository.UserRepository;
 import ru.atkachev.tm.service.*;
 import javax.xml.ws.Endpoint;
-import java.util.*;
 
 public class Bootstrap {
 
@@ -27,8 +26,6 @@ public class Bootstrap {
     final private UserEndpoint userEndpoint = new UserEndpoint(userService);
     final private SessionEndpoint sessionEndpoint = new SessionEndpoint(sessionService);
     final private DomainEndpoint domainEndpoint = new DomainEndpoint(domainService);
-
-    final private Scanner scanner = new Scanner(System.in);
 
     public void init(){
         Endpoint.publish("http://localhost:8080/ProjectService?wsdl", projectEndpoint);

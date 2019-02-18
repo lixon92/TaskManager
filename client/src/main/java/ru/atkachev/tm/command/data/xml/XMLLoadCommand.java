@@ -5,7 +5,7 @@ import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.endpoint.IOException_Exception;
 
 public class XMLLoadCommand extends AbstractCommand {
-    public XMLLoadCommand(IServiceLocator serviceLocator) {
+    public XMLLoadCommand(final IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 

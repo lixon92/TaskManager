@@ -15,36 +15,35 @@ public class Project implements Serializable {
     public Date getDateCreated() {
         return dateCreated;
     }
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(final Date dateCreated) {
         this.dateCreated = dateCreated;
     }
 
     public String getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
     public String getDescribe() {
         return describe;
     }
-    public void setDescribe(String describe) {
+    public void setDescribe(final String describe) {
         this.describe = describe;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
     public String getUserId() {
         return userId;
     }
-    public void setUserId(String userId) {
+    public void setUserId(final String userId) {
         this.userId = userId;
     }
 }
-

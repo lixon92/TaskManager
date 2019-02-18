@@ -13,22 +13,22 @@ public class TaskService {
     final private TaskRepository taskRepository;
     final private ProjectRepository projectRepository;
 
-    public TaskService(TaskRepository taskRepository, ProjectRepository projectRepository){
+    public TaskService(final TaskRepository taskRepository, final ProjectRepository projectRepository){
         this.taskRepository = taskRepository;
         this.projectRepository = projectRepository;
     }
 
-    public void createTask(String userID, String projectId, String name, String description) throws IOException {
+    public void createTask(final String userID, final String projectId, final String name, final String description) throws IOException {
         if (projectRepository.getProjectById(projectId) == null) throw new IOException();
         taskRepository.createTask(userID, projectId, name, description);
     }
 
-    public void deleteTask(String taskId) throws IOException {
+    public void deleteTask(final String taskId) throws IOException {
         if (taskRepository.getTaskById(taskId) == null) throw new IOException();
         taskRepository.deleteTask(taskId);
     }
 
-    public void updateTask(String taskId, String name, String description) {
+    public void updateTask(final String taskId, final String name, final String description) {
         taskRepository.updateTask(taskId, name, description);
     }
 
@@ -36,11 +36,11 @@ public class TaskService {
         return taskRepository.getTaskList();
     }
 
-    public void setTaskList(Collection<Task> taskList) {
+    public void setTaskList(final Collection<Task> taskList) {
         taskRepository.setTaskList(taskList);
     }
 
-    public Task getTaskById(String taskId) {
+    public Task getTaskById(final String taskId) {
         return taskRepository.getTaskById(taskId);
     }
 

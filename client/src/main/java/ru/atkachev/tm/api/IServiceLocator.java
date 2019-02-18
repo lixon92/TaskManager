@@ -14,7 +14,7 @@ public interface IServiceLocator {
     DomainEndpoint getDomainEndpoint();
 
     Session getSession();
-    void setSession(Session session);
+    void setSession(final Session session);
 
     public Collection<AbstractCommand> getCommandList();
     public String getConsoleServiceString();

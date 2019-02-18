@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinLoadCommand extends AbstractCommand {
-    public BinLoadCommand(IServiceLocator serviceLocate) {
+    public BinLoadCommand(final IServiceLocator serviceLocate) {
             super(serviceLocate);
     }
 
     @Override
     public String command() {
-        return "bin d";
+        return "l b";
     }
 
     @Override
@@ -33,7 +33,7 @@ public class BinLoadCommand extends AbstractCommand {
 
     @Override
     public String description() {
-        return "bin s";
+        return "Load from bin";
     }
 
     @Override

@@ -5,7 +5,7 @@ import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.endpoint.IOException_Exception;
 
 public class JSONCleanCommand extends AbstractCommand {
-    public JSONCleanCommand(IServiceLocator serviceLocator) {
+    public JSONCleanCommand(final IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 

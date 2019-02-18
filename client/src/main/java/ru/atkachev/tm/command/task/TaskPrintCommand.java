@@ -7,7 +7,7 @@ import ru.atkachev.tm.endpoint.Task;
 
 public class TaskPrintCommand  extends AbstractCommand {
 
-    public TaskPrintCommand(IServiceLocator serviceLocator) {
+    public TaskPrintCommand(final IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 
@@ -25,7 +25,7 @@ public class TaskPrintCommand  extends AbstractCommand {
         }
 
         int index = 1;
-        for (Task task : serviceLocator.getTaskEndpoint().getTaskList(session) ){
+        for (final Task task : serviceLocator.getTaskEndpoint().getTaskList(session) ){
             System.out.printf("%d. %s %s %s%n", index,
                     task.getName(), task.getId(), task.getUserID());
             index++;

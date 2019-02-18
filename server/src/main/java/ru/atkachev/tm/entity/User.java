@@ -15,42 +15,43 @@ public class User implements Serializable {
     public Role getRole() {
         return role;
     }
-    public void setRole(Role role) {
+    public void setRole(final Role role) {
         this.role = role;
     }
 
     public String getID() {
         return ID;
     }
-    public void setID(String ID) {
+    public void setID(final String ID) {
         this.ID = ID;
     }
 
     public String getPassword() {
         return password;
     }
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
     public String getLogin() {
         return login;
     }
-    public void setLogin(String login) {
+    public void setLogin(final String login) {
         this.login = login;
     }
+
 }

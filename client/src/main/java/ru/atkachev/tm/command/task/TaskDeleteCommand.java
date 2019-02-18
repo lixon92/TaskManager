@@ -6,7 +6,7 @@ import ru.atkachev.tm.endpoint.Session;
 
 public class TaskDeleteCommand extends AbstractCommand {
 
-    public TaskDeleteCommand(IServiceLocator serviceLocate) {
+    public TaskDeleteCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 

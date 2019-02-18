@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class JSONSaveCommand extends AbstractCommand {
 
-    public JSONSaveCommand(IServiceLocator serviceLocate) {
+    public JSONSaveCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 

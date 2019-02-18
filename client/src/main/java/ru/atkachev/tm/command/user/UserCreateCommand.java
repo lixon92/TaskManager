@@ -1,5 +1,6 @@
 package ru.atkachev.tm.command.user;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
 
@@ -7,7 +8,7 @@ public class UserCreateCommand extends AbstractCommand {
 
     private boolean secure = false;
 
-    public UserCreateCommand(IServiceLocator serviceLocate){
+    public UserCreateCommand(final IServiceLocator serviceLocate){
         super(serviceLocate);
     }
 
@@ -25,7 +26,7 @@ public class UserCreateCommand extends AbstractCommand {
 //        final String lastName = serviceLocator.getConsoleServiceString();
         System.out.println("enter user password");
         final String password = serviceLocator.getConsoleServiceString();
-        serviceLocator.getUserEndpoint().createUser(login, "", "", password);
+        serviceLocator.getUserEndpoint().createUser(login, "", "", DigestUtils.md5Hex(password));
     }
 
     public String description() {

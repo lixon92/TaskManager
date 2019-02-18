@@ -8,7 +8,7 @@ import java.util.Map;
 public class SessionRepository {
     final private Map<String, Session> sessionMap = new HashMap<>();
 
-    public Session sessionStart(String userId){
+    public Session sessionStart(final String userId){
         final Session session = new Session(userId);
         sessionMap.put(session.getId(), session);
         return session;

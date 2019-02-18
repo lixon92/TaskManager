@@ -7,8 +7,8 @@ import ru.atkachev.tm.endpoint.Session;
 
 public class ProjectPrintCommand extends AbstractCommand {
 
-    public ProjectPrintCommand(IServiceLocator serviceLocate){
-        super(serviceLocate);
+    public ProjectPrintCommand(final IServiceLocator serviceLocator){
+        super(serviceLocator);
     }
 
     public String command(){
@@ -22,7 +22,7 @@ public class ProjectPrintCommand extends AbstractCommand {
             System.out.println("Empty");
         }
         int index = 1;
-        for (Project project : serviceLocator.getProjectEndpoint().getProjectList(session) ){
+        for (final Project project : serviceLocator.getProjectEndpoint().getProjectList(session) ){
             System.out.printf("%d. %s %s %s %n", index,
                     project.getName(), project.getId(), project.getUserId());
             index++;

@@ -20,7 +20,7 @@ public class DomainService {
     private TaskRepository taskRepository;
     private UserRepository userRepository;
 
-    public DomainService(ProjectRepository projectRepository, TaskRepository taskRepository, UserRepository userRepository) {
+    public DomainService(final ProjectRepository projectRepository, final TaskRepository taskRepository, final UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;

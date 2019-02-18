@@ -5,7 +5,7 @@ import ru.atkachev.tm.entity.Session;
 
 public class ValidateSession {
 
-    public static void validate(Session session){
+    public static void validate(final Session session){
         if (session == null) throw new RuntimeException();
         if (session.getId() == null) throw new RuntimeException();
         if (session.getUserId() == null) throw new RuntimeException();
@@ -19,7 +19,7 @@ public class ValidateSession {
         )) throw new RuntimeException();
     }
 
-    public static String sign(String sessionId, String userId, long timeStamp){
+    public static String sign(final String sessionId, final String userId, final long timeStamp){
         String sign = "Session{" +
                 "id='" + sessionId + '\'' +
                 ", userId='" + userId + '\'' +

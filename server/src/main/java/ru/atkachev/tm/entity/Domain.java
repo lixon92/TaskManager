@@ -12,7 +12,7 @@ public class Domain implements Serializable {
     public Collection<User> getUsers() {
         return users;
     }
-    public void setUsers(Collection<User> users) {
+    public void setUsers(final Collection<User> users) {
         this.users = users;
     }
 
@@ -20,7 +20,7 @@ public class Domain implements Serializable {
         return projects;
     }
 
-    public void setProjects(Collection<Project> projects) {
+    public void setProjects(final Collection<Project> projects) {
         this.projects = projects;
     }
 
@@ -28,7 +28,8 @@ public class Domain implements Serializable {
         return tasks;
     }
 
-    public void setTasks(Collection<Task> tasks) {
+    public void setTasks(final Collection<Task> tasks) {
         this.tasks = tasks;
     }
+
 }

@@ -3,6 +3,7 @@ package ru.atkachev.tm.bootstrap;
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.command.ExitCommand;
+import ru.atkachev.tm.command.data.bin.BinCleanCommand;
 import ru.atkachev.tm.command.data.bin.BinLoadCommand;
 import ru.atkachev.tm.command.data.bin.BinSaveCommand;
 import ru.atkachev.tm.command.data.json.JSONCleanCommand;
@@ -39,6 +40,7 @@ public class Bootstrap implements IServiceLocator {
     final private UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
     final private SessionEndpoint sessionEndpoint = new SessionEndpointService().getSessionEndpointPort();
     final private DomainEndpoint domainEndpoint = new DomainEndpointService().getDomainEndpointPort();
+
     private Session session;
 
     public void init(){
@@ -58,6 +60,7 @@ public class Bootstrap implements IServiceLocator {
         registry(new UserCreateCommand(this));
         registry(new UserLogonCommand(this));
 
+        registry(new BinCleanCommand(this));
         registry(new BinSaveCommand(this));
         registry(new BinLoadCommand(this));
 
@@ -120,7 +123,7 @@ public class Bootstrap implements IServiceLocator {
         return session;
     }
     @Override
-    public void setSession(Session session) {
+    public void setSession(final Session session) {
         this.session = session;
     }
 

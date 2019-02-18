@@ -9,7 +9,7 @@ import java.io.IOException;
 @WebService
 public class DomainEndpoint {
     final private DomainService domainService;
-    public DomainEndpoint(DomainService domainService){
+    public DomainEndpoint(final DomainService domainService){
         this.domainService = domainService;
     }
 

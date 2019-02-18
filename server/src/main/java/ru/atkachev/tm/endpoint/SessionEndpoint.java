@@ -11,13 +11,13 @@ import java.io.IOException;
 @WebService
 public class SessionEndpoint {
     final private SessionService sessionService;
-    public SessionEndpoint(SessionService sessionService){
+    public SessionEndpoint(final SessionService sessionService){
         this.sessionService = sessionService;
     }
     @WebMethod
     public Session sessionStart(
-            @WebParam(name = "login") String login,
-            @WebParam(name = "password")String password
+            @WebParam(name = "login") final String login,
+            @WebParam(name = "password") final String password
     ) throws IOException {
         return sessionService.sessionStart(login, password);
     }

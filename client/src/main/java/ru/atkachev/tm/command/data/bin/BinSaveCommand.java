@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class BinSaveCommand extends AbstractCommand {
-    public BinSaveCommand(IServiceLocator serviceLocate) {
+    public BinSaveCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 
     @Override
     public String command() {
-        return "bin s";
+        return "s b";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BinSaveCommand extends AbstractCommand {
 
     @Override
     public String description() {
-        return "save projects in bin";
+        return "Save projects in bin";
     }
 
     @Override

@@ -2,10 +2,11 @@ package ru.atkachev.tm.command.task;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.command.AbstractCommand;
+import ru.atkachev.tm.endpoint.Session;
 
 public class TaskUpdateCommand extends AbstractCommand {
 
-    public TaskUpdateCommand(IServiceLocator serviceLocate) {
+    public TaskUpdateCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 
@@ -16,19 +17,16 @@ public class TaskUpdateCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-//        int index;
-//        String nameTask, descriptionTask;
-//
-//        System.out.println("enter number task");
-//        index = Integer.parseInt(serviceLocator.getTerminalService()) - 1;
-//
-//        System.out.println("enter new name task: ");
-//        nameTask = serviceLocator.getTerminalService();
-//
+
+        System.out.println("enter ID task");
+        final String taskID = serviceLocator.getConsoleServiceString();
+
+        System.out.println("enter new name task: ");
+        final String nameTask = serviceLocator.getConsoleServiceString();
 //        System.out.println("enter new description task: ");
-//        descriptionTask = serviceLocator.getTerminalService();
-//
-//        serviceLocator.getTaskService().updateTask(index, nameTask, descriptionTask);
+//        final String descriptionTask = serviceLocator.getConsoleServiceString();
+        final Session session = serviceLocator.getSession();
+        serviceLocator.getTaskEndpoint().updateTask(session, taskID, nameTask, "test");
     }
 
     @Override

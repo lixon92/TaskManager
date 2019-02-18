@@ -6,7 +6,7 @@ import ru.atkachev.tm.endpoint.Session;
 
 public class ProjectUpdateCommand extends AbstractCommand {
 
-    public ProjectUpdateCommand(IServiceLocator serviceLocate) {
+    public ProjectUpdateCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 
@@ -24,11 +24,11 @@ public class ProjectUpdateCommand extends AbstractCommand {
         System.out.println("enter new name project: ");
         nameProject = serviceLocator.getConsoleServiceString();
 
-        System.out.println("enter new description project: ");
-        descriptionProject = serviceLocator.getConsoleServiceString();
+//        System.out.println("enter new description project: ");
+//        descriptionProject = serviceLocator.getConsoleServiceString();
 
         final Session session = serviceLocator.getSession();
-        serviceLocator.getProjectEndpoint().updateProject(session, projectId, nameProject, descriptionProject);
+        serviceLocator.getProjectEndpoint().updateProject(session, projectId, nameProject, "test");
     }
 
     @Override

@@ -6,7 +6,7 @@ public abstract class AbstractCommand {
 
     final protected IServiceLocator serviceLocator;
 
-    public AbstractCommand(IServiceLocator serviceLocator){
+    public AbstractCommand(final IServiceLocator serviceLocator){
         this.serviceLocator = serviceLocator;
     };
     public abstract String command();

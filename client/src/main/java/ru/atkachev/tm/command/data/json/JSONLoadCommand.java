@@ -5,7 +5,7 @@ import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.endpoint.IOException_Exception;
 
 public class JSONLoadCommand extends AbstractCommand {
-    public JSONLoadCommand(IServiceLocator serviceLocator) {
+    public JSONLoadCommand(final IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 

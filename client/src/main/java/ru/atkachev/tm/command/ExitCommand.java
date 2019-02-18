@@ -3,7 +3,7 @@ package ru.atkachev.tm.command;
 import ru.atkachev.tm.api.IServiceLocator;
 
 public class ExitCommand extends AbstractCommand {
-    public ExitCommand(IServiceLocator serviceLocate) {
+    public ExitCommand(final IServiceLocator serviceLocate) {
         super(serviceLocate);
     }
 

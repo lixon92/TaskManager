@@ -17,24 +17,24 @@ public class ProjectService {
     final private ProjectRepository projectRepository;
     final private TaskRepository taskRepository;
 
-    public ProjectService(ProjectRepository projectRepository, TaskRepository taskRepository) {
+    public ProjectService(final ProjectRepository projectRepository, final TaskRepository taskRepository) {
         this.projectRepository = projectRepository;
         this.taskRepository = taskRepository;
     }
 
-    public Project getProjectById(String projectId) {
+    public Project getProjectById(final String projectId) {
         return projectRepository.getProjectById(projectId);
     }
 
-    public void createProject(String userId, String name, String description) {
+    public void createProject(final String userId, final String name, final String description) {
         projectRepository.createProject(userId, name, description);
     }
 
-    public void updateProject(String projectId, String name, String description) {
+    public void updateProject(final String projectId, final String name, final String description) {
         projectRepository.updateProject(projectId, name, description);
     }
 
-    public void deleteProject(String projectId) throws IOException {
+    public void deleteProject(final String projectId) throws IOException {
         if(projectRepository.getProjectById(projectId) == null) throw new IOException();
         projectRepository.deleteProject(projectId);
     }
@@ -43,7 +43,7 @@ public class ProjectService {
         return projectRepository.getProjectList();
     }
 
-    public void setProjectList(List<Project> projectList) {
+    public void setProjectList(final List<Project> projectList) {
         projectRepository.setProjectList(projectList);
     }
 }

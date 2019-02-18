@@ -5,7 +5,7 @@ import ru.atkachev.tm.command.AbstractCommand;
 import ru.atkachev.tm.endpoint.IOException_Exception;
 
 public class XMLCleanCommand extends AbstractCommand {
-    public XMLCleanCommand(IServiceLocator serviceLocator) {
+    public XMLCleanCommand(final IServiceLocator serviceLocator) {
         super(serviceLocator);
     }
 

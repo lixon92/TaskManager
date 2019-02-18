@@ -1,5 +1,6 @@
 package ru.atkachev.tm.repository;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.User;
 
@@ -16,14 +17,14 @@ public class UserRepository {
     private void init(){
         final User adminUser = new User();
         adminUser.setLogin("admin");
-        adminUser.setPassword("admin");
+        adminUser.setPassword(DigestUtils.md5Hex("admin"));
         adminUser.setFirstName("admin");
         adminUser.setLastName("admin");
         adminUser.setRole(Role.ADMIN);
         userMap.put("admin", adminUser);
     }
 
-    public void createUser(String login, String firstName, String lastName, String password){
+    public void createUser(final String login, final String firstName, final String lastName, final String password){
         User user = new User();
         user.setLogin(login);
         user.setFirstName(firstName);
@@ -32,7 +33,7 @@ public class UserRepository {
         userMap.put(user.getID(), user);
     }
 
-    public boolean doesUserExist(String userLogin, String userPassword){
+    public boolean doesUserExist(final String userLogin, final String userPassword){
         for (User user : userMap.values()){
             if ( user.getLogin().equals(userLogin ) && user.getPassword().equals(userPassword)){
                 return true;
@@ -41,8 +42,8 @@ public class UserRepository {
         return false;
     }
 
-    public String getUserId(String userLogin, String userPassword){
-        for (User user : userMap.values()){
+    public String getUserId(final String userLogin, final String userPassword){
+        for (final User user : userMap.values()){
             if ( user.getLogin().equals(userLogin ) && user.getPassword().equals(userPassword) ){
                 return user.getID();
             }
