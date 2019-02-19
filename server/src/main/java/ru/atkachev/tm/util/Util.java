@@ -11,7 +11,7 @@ public class Util {
     final private static String DB_USERNAME = "root";
     final private static String DB_PASSWORD = "root";
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
 
         Connection connection = null;
 
