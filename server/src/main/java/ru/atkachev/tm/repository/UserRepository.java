@@ -16,8 +16,8 @@ public class UserRepository {
 
     private void init(){
         final User adminUser = new User();
-        adminUser.setLogin("admin");
-        adminUser.setPassword(DigestUtils.md5Hex("admin"));
+        adminUser.setLogin("f");
+        adminUser.setPassword(DigestUtils.md5Hex("f"));
         adminUser.setFirstName("admin");
         adminUser.setLastName("admin");
         adminUser.setRole(Role.ADMIN);

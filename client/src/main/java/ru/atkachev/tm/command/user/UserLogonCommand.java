@@ -13,7 +13,7 @@ public class UserLogonCommand extends AbstractCommand {
     }
 
     public String command() {
-        return "logon";
+        return "f";
     }
 
     public void execute() {

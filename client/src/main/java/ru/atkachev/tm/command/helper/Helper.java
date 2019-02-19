@@ -15,7 +15,7 @@ public class Helper extends AbstractCommand {
 
     @Override
     public String command() {
-        return "f";
+        return "fff";
     }
 
     @Override
