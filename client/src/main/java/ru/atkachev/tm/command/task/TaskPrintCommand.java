@@ -27,7 +27,7 @@ public class TaskPrintCommand  extends AbstractCommand {
         int index = 1;
         for (final Task task : serviceLocator.getTaskEndpoint().getTaskList(session) ){
             System.out.printf("%d. %s %s %s%n", index,
-                    task.getName(), task.getId(), task.getUserID());
+                    task.getName(), task.getId(), task.getUserId());
             index++;
         }
     }

@@ -16,12 +16,12 @@ public class UserEndpoint {
             @WebParam(name = "userService")final UserService userService){
         this.userEndpoint = userService;
     }
-    @WebMethod
-    public User findUser(
-            @WebParam(name = "userLogin")final String userLogin,
-            @WebParam(name = "userPassword")final String userPassword) {
-        return userEndpoint.findUser(userLogin, userPassword);
-    }
+//    @WebMethod
+//    public User findUser(
+//            @WebParam(name = "userLogin")final String userLogin,
+//            @WebParam(name = "userPassword")final String userPassword) {
+//        return userEndpoint.findUser(userLogin, userPassword);
+//    }
     @WebMethod
     public void createUser(
             @WebParam(name = "login")final String login,
@@ -30,12 +30,12 @@ public class UserEndpoint {
             @WebParam(name = "password")final String password) {
         userEndpoint.createUser(login, firstName, lastName, password);
     }
-    @WebMethod
-    public boolean doesUserExist(
-            @WebParam(name = "userLogin") final String userLogin,
-            @WebParam(name = "userPassword") final String userPassword) {
-        return userEndpoint.doesUserExist(userLogin, userPassword);
-    }
+//    @WebMethod
+//    public boolean doesUserExist(
+//            @WebParam(name = "userLogin") final String userLogin,
+//            @WebParam(name = "userPassword") final String userPassword) {
+//        return userEndpoint.doesUserExist(userLogin, userPassword);
+//    }
     @WebMethod
     public String getUserId(
             @WebParam(name = "userLogin")final String userLogin,
@@ -43,8 +43,8 @@ public class UserEndpoint {
         return userEndpoint.getUserId(userLogin, userPassword);
     }
 
-    @WebMethod
-    public Collection<User> getUserList() {
-        return userEndpoint.getUserList();
-    }
+//    @WebMethod
+//    public Collection<User> getUserList() {
+//        return userEndpoint.getUserList();
+//    }
 }

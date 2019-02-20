@@ -4,9 +4,12 @@ import ru.atkachev.tm.entity.Project;
 import ru.atkachev.tm.entity.Session;
 import ru.atkachev.tm.repository.ProjectRepository;
 import ru.atkachev.tm.repository.TaskRepository;
+import ru.atkachev.tm.util.Util;
 import ru.atkachev.tm.util.ValidateSession;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,24 +26,80 @@ public class ProjectService {
     }
 
     public Project getProjectById(final String projectId) {
-        return projectRepository.getProjectById(projectId);
+        Connection connection = Util.getConnection();
+        try {
+            return projectRepository.getProjectById(connection, projectId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     public void createProject(final String userId, final String name, final String description) {
-        projectRepository.createProject(userId, name, description);
+        Connection connection = Util.getConnection();
+        try{
+            projectRepository.createProject(connection, userId, name, description);
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void updateProject(final String projectId, final String name, final String description) {
-        projectRepository.updateProject(projectId, name, description);
+        Connection connection = Util.getConnection();
+        try {
+            projectRepository.updateProject(connection, projectId, name, description);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void deleteProject(final String projectId) throws IOException {
-        if(projectRepository.getProjectById(projectId) == null) throw new IOException();
-        projectRepository.deleteProject(projectId);
+        Connection connection = Util.getConnection();
+        try {
+            projectRepository.deleteProject(connection, projectId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public Collection<Project> getProjectList() {
-        return projectRepository.getProjectList();
+        Connection connection = Util.getConnection();
+        try {
+            return projectRepository.getProjectList(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     public void setProjectList(final List<Project> projectList) {

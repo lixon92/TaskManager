@@ -8,7 +8,7 @@ public class Task implements Serializable {
 
     private Date dateCreated = new Date();
     private String id = UUID.randomUUID().toString();
-    private String UserID;
+    private String UserId;
     private String projectId;
     private String describe;
     private String name;
@@ -27,11 +27,11 @@ public class Task implements Serializable {
         this.id = id;
     }
 
-    public String getUserID() {
-        return UserID;
+    public String getUserId() {
+        return UserId;
     }
-    public void setUserID(final String userID) {
-        UserID = userID;
+    public void setUserId(final String userId) {
+        UserId = userId;
     }
 
     public String getProjectId() {
