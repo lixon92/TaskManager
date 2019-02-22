@@ -16,11 +16,11 @@ public class JSONCleanCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().jsonClean();
-        } catch (IOException_Exception e) {
-            System.out.println("Error clean!");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().jsonClean();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error clean!");
+//        }
     }
 
     @Override

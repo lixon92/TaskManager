@@ -16,11 +16,11 @@ public class XMLLoadCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().xmlLoad();
-        } catch (IOException_Exception e) {
-            System.out.println("Error load!");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().xmlLoad();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error load!");
+//        }
     }
 
     @Override

@@ -20,14 +20,14 @@ public class ProjectEndpoint {
         this.projectService = projectService;
     }
 
-    @WebMethod
-    public Project getProjectById(
-        @WebParam(name = "session") final Session session,
-        @WebParam(name = "projectId") final String projectId
-    ) {
-        ValidateSession.validate(session);
-        return projectService.getProjectById(projectId);
-    }
+//    @WebMethod
+//    public Project getProjectById(
+//        @WebParam(name = "session") final Session session,
+//        @WebParam(name = "projectId") final String projectId
+//    ) {
+//        ValidateSession.validate(session);
+//        return projectService.getProjectById(projectId);
+//    }
 
     @WebMethod
     public void createProject(
@@ -39,25 +39,25 @@ public class ProjectEndpoint {
         projectService.createProject(session.getUserId(), name, description);
     }
 
-    @WebMethod
-    public void updateProject(
-        @WebParam(name = "session") final Session session,
-        @WebParam(name = "projectId") final String projectId,
-        @WebParam(name = "name") final String name,
-        @WebParam(name = "description") final String description
-    ) {
-        ValidateSession.validate(session);
-        projectService.updateProject(projectId, name, description);
-    }
+//    @WebMethod
+//    public void updateProject(
+//        @WebParam(name = "session") final Session session,
+//        @WebParam(name = "projectId") final String projectId,
+//        @WebParam(name = "name") final String name,
+//        @WebParam(name = "description") final String description
+//    ) {
+//        ValidateSession.validate(session);
+//        projectService.updateProject(projectId, name, description);
+//    }
 
-    @WebMethod
-    public void deleteProject(
-        @WebParam(name = "session") final Session session,
-        @WebParam(name = "projectId") final String projectId
-    ) throws IOException {
-        ValidateSession.validate(session);
-        projectService.deleteProject(projectId);
-    }
+//    @WebMethod
+//    public void deleteProject(
+//        @WebParam(name = "session") final Session session,
+//        @WebParam(name = "projectId") final String projectId
+//    ) throws IOException {
+//        ValidateSession.validate(session);
+//        projectService.deleteProject(projectId);
+//    }
 
     @WebMethod
     public Collection<Project> getProjectList(
@@ -67,12 +67,12 @@ public class ProjectEndpoint {
         return projectService.getProjectList();
     }
 
-    @WebMethod
-    public void setProjectList(
-        @WebParam(name = "session") final Session session,
-        @WebParam(name = "projectList") final List<Project> projectList
-    ) {
-        ValidateSession.validate(session);
-        projectService.setProjectList(projectList);
-    }
+//    @WebMethod
+//    public void setProjectList(
+//        @WebParam(name = "session") final Session session,
+//        @WebParam(name = "projectList") final List<Project> projectList
+//    ) {
+//        ValidateSession.validate(session);
+//        projectService.setProjectList(projectList);
+//    }
 }

@@ -17,18 +17,18 @@ public class ProjectUpdateCommand extends AbstractCommand {
 
     @Override
     public void execute(){
-        String nameProject, descriptionProject;
-        System.out.println("enter id project");
-        final String projectId = serviceLocator.getConsoleServiceString();
-
-        System.out.println("enter new name project: ");
-        nameProject = serviceLocator.getConsoleServiceString();
-
-//        System.out.println("enter new description project: ");
-//        descriptionProject = serviceLocator.getConsoleServiceString();
-
-        final Session session = serviceLocator.getSession();
-        serviceLocator.getProjectEndpoint().updateProject(session, projectId, nameProject, "test");
+//        String nameProject, descriptionProject;
+//        System.out.println("enter id project");
+//        final String projectId = serviceLocator.getConsoleServiceString();
+//
+//        System.out.println("enter new name project: ");
+//        nameProject = serviceLocator.getConsoleServiceString();
+//
+////        System.out.println("enter new description project: ");
+////        descriptionProject = serviceLocator.getConsoleServiceString();
+//
+//        final Session session = serviceLocator.getSession();
+//        serviceLocator.getProjectEndpoint().updateProject(session, projectId, nameProject, "test");
     }
 
     @Override

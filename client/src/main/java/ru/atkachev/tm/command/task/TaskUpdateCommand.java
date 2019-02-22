@@ -18,15 +18,15 @@ public class TaskUpdateCommand extends AbstractCommand {
     @Override
     public void execute() {
 
-        System.out.println("enter ID task");
-        final String taskID = serviceLocator.getConsoleServiceString();
-
-        System.out.println("enter new name task: ");
-        final String nameTask = serviceLocator.getConsoleServiceString();
-//        System.out.println("enter new description task: ");
-//        final String descriptionTask = serviceLocator.getConsoleServiceString();
-        final Session session = serviceLocator.getSession();
-        serviceLocator.getTaskEndpoint().updateTask(session, taskID, nameTask, "test");
+//        System.out.println("enter ID task");
+//        final String taskID = serviceLocator.getConsoleServiceString();
+//
+//        System.out.println("enter new name task: ");
+//        final String nameTask = serviceLocator.getConsoleServiceString();
+////        System.out.println("enter new description task: ");
+////        final String descriptionTask = serviceLocator.getConsoleServiceString();
+//        final Session session = serviceLocator.getSession();
+//        serviceLocator.getTaskEndpoint().updateTask(session, taskID, nameTask, "test");
     }
 
     @Override

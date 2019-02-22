@@ -46,18 +46,18 @@
                                 <wsdlOption>
                                     <wsdl>http://localhost:8080/ProjectService?wsdl</wsdl>
                                 </wsdlOption>
-                                <wsdlOption>
-                                    <wsdl>http://localhost:8080/TaskService?wsdl</wsdl>
-                                </wsdlOption>
+                                <!--<wsdlOption>-->
+                                    <!--<wsdl>http://localhost:8080/TaskService?wsdl</wsdl>-->
+                                <!--</wsdlOption>-->
                                 <wsdlOption>
                                     <wsdl>http://localhost:8080/UserService?wsdl</wsdl>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>http://localhost:8080/SessionService?wsdl</wsdl>
                                 </wsdlOption>
-                                <wsdlOption>
-                                    <wsdl>http://localhost:8080/DomainService?wsdl</wsdl>
-                                </wsdlOption>
+                                <!--<wsdlOption>-->
+                                    <!--<wsdl>http://localhost:8080/DomainService?wsdl</wsdl>-->
+                                <!--</wsdlOption>-->
                             </wsdlOptions>
                         </configuration>
                         <goals>

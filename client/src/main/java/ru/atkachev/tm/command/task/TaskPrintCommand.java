@@ -18,18 +18,18 @@ public class TaskPrintCommand  extends AbstractCommand {
 
     @Override
     public void execute() {
-
-        final Session session = serviceLocator.getSession();
-        if (serviceLocator.getTaskEndpoint().getTaskList(session).isEmpty()){
-            System.out.println("Empty");
-        }
-
-        int index = 1;
-        for (final Task task : serviceLocator.getTaskEndpoint().getTaskList(session) ){
-            System.out.printf("%d. %s %s %s%n", index,
-                    task.getName(), task.getId(), task.getUserID());
-            index++;
-        }
+//
+//        final Session session = serviceLocator.getSession();
+//        if (serviceLocator.getTaskEndpoint().getTaskList(session).isEmpty()){
+//            System.out.println("Empty");
+//        }
+//
+//        int index = 1;
+//        for (final Task task : serviceLocator.getTaskEndpoint().getTaskList(session) ){
+//            System.out.printf("%d. %s %s %s%n", index,
+//                    task.getName(), task.getId(), task.getUserID());
+//            index++;
+//        }
     }
 
     @Override

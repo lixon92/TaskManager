@@ -8,10 +8,10 @@ import java.util.Collection;
 public interface IServiceLocator {
 
     ProjectEndpoint getProjectEndpoint();
-    TaskEndpoint getTaskEndpoint();
+//    TaskEndpoint getTaskEndpoint();
     UserEndpoint getUserEndpoint();
     SessionEndpoint getSessionEndpoint();
-    DomainEndpoint getDomainEndpoint();
+//    DomainEndpoint getDomainEndpoint();
 
     Session getSession();
     void setSession(final Session session);

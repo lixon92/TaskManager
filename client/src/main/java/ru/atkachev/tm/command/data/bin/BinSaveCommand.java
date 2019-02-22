@@ -21,11 +21,11 @@ public class BinSaveCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().binSave();
-        } catch (IOException_Exception e) {
-            System.out.println("Error save bin!");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().binSave();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error save bin!");
+//        }
     }
 
     @Override

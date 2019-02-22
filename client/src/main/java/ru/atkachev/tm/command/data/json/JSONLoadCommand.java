@@ -16,11 +16,11 @@ public class JSONLoadCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().jsonLoad();
-        } catch (IOException_Exception e) {
-            System.out.println("Error load!");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().jsonLoad();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error load!");
+//        }
     }
 
     @Override

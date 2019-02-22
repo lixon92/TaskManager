@@ -16,11 +16,11 @@ public class XMLCleanCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().xmlClean();
-        } catch (IOException_Exception e) {
-            System.out.println("Error clean");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().xmlClean();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error clean");
+//        }
     }
 
     @Override

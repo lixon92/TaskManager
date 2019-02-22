@@ -27,22 +27,22 @@ public class DomainService {
     }
 
     public void jsonSave() throws IOException {
-        final File file = new File("File.json");
-        final ObjectMapper objectMapper = new ObjectMapper();
-        final Domain domain = new Domain();
-        domain.setProjects(projectRepository.getProjectList());
-        domain.setTasks(taskRepository.getTaskList());
-        domain.setUsers(userRepository.getUserList());
-        objectMapper.writeValue(file, domain);
+//        final File file = new File("File.json");
+//        final ObjectMapper objectMapper = new ObjectMapper();
+//        final Domain domain = new Domain();
+//        domain.setProjects(projectRepository.getProjectList());
+//        domain.setTasks(taskRepository.getTaskList());
+//        domain.setUsers(userRepository.getUserList());
+//        objectMapper.writeValue(file, domain);
     }
 
     public void jsonLoad() throws IOException {
-        final File file = new File("File.json");
-        final ObjectMapper objectMapper = new ObjectMapper();
-        final Domain domain = objectMapper.readValue(file, Domain.class);
-        projectRepository.setProjectList(domain.getProjects());
-        taskRepository.setTaskList(domain.getTasks());
-        userRepository.setUserList(domain.getUsers());
+//        final File file = new File("File.json");
+//        final ObjectMapper objectMapper = new ObjectMapper();
+//        final Domain domain = objectMapper.readValue(file, Domain.class);
+//        projectRepository.setProjectList(domain.getProjects());
+//        taskRepository.setTaskList(domain.getTasks());
+//        userRepository.setUserList(domain.getUsers());
     }
 
     public void jsonClean() {
@@ -58,22 +58,22 @@ public class DomainService {
     }
 
     public void xmlSave() throws IOException {
-        final Domain domain = new Domain();
-        final File file = new File("File.xml");
-        final ObjectMapper objectMapper = new XmlMapper();
-        domain.setProjects(projectRepository.getProjectList());
-        domain.setTasks(taskRepository.getTaskList());
-        domain.setUsers(userRepository.getUserList());
-        objectMapper.writeValue(file, domain);
+//        final Domain domain = new Domain();
+//        final File file = new File("File.xml");
+//        final ObjectMapper objectMapper = new XmlMapper();
+//        domain.setProjects(projectRepository.getProjectList());
+//        domain.setTasks(taskRepository.getTaskList());
+//        domain.setUsers(userRepository.getUserList());
+//        objectMapper.writeValue(file, domain);
     }
 
     public void xmlLoad() throws IOException, NullPointerException {
-        final File file = new File("File.xml");
-        final ObjectMapper objectMapper = new XmlMapper();
-        final Domain domain = objectMapper.readValue(file, Domain.class);
-        projectRepository.setProjectList(domain.getProjects());
-        taskRepository.setTaskList(domain.getTasks());
-        userRepository.setUserList(domain.getUsers());
+//        final File file = new File("File.xml");
+//        final ObjectMapper objectMapper = new XmlMapper();
+//        final Domain domain = objectMapper.readValue(file, Domain.class);
+//        projectRepository.setProjectList(domain.getProjects());
+//        taskRepository.setTaskList(domain.getTasks());
+//        userRepository.setUserList(domain.getUsers());
     }
 
     public void xmlClean() throws IOException {
@@ -87,23 +87,23 @@ public class DomainService {
     }
 
     public void binSave() throws IOException {
-        ObjectOutputStream objectOutputStream =
-                new ObjectOutputStream(new FileOutputStream("File.bin"));
-        final Domain domain = new Domain();
-        domain.setProjects(projectRepository.getProjectList());
-        domain.setTasks(taskRepository.getTaskList());
-        domain.setUsers(userRepository.getUserList());
-        objectOutputStream.writeObject(domain);
-        objectOutputStream.close();
+//        ObjectOutputStream objectOutputStream =
+//                new ObjectOutputStream(new FileOutputStream("File.bin"));
+//        final Domain domain = new Domain();
+//        domain.setProjects(projectRepository.getProjectList());
+//        domain.setTasks(taskRepository.getTaskList());
+//        domain.setUsers(userRepository.getUserList());
+//        objectOutputStream.writeObject(domain);
+//        objectOutputStream.close();
     }
 
     public void binLoad() throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream =
-                new ObjectInputStream(new FileInputStream("File.bin"));
-        final Domain domain = (Domain) objectInputStream.readObject();
-        projectRepository.setProjectList(domain.getProjects());
-        taskRepository.setTaskList(domain.getTasks());
-        userRepository.setUserList(domain.getUsers());
-        objectInputStream.close();
+//        ObjectInputStream objectInputStream =
+//                new ObjectInputStream(new FileInputStream("File.bin"));
+//        final Domain domain = (Domain) objectInputStream.readObject();
+//        projectRepository.setProjectList(domain.getProjects());
+//        taskRepository.setTaskList(domain.getTasks());
+//        userRepository.setUserList(domain.getUsers());
+//        objectInputStream.close();
     }
 }

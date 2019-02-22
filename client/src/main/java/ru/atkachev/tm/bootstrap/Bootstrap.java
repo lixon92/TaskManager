@@ -36,10 +36,10 @@ public class Bootstrap implements IServiceLocator {
     final private Scanner scanner = new Scanner(System.in);
     final private Map<String, AbstractCommand> commands = new HashMap<>();
     final private ProjectEndpoint projectEndpoint = new ProjectEndpointService().getProjectEndpointPort();
-    final private TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
+//    final private TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
     final private UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
     final private SessionEndpoint sessionEndpoint = new SessionEndpointService().getSessionEndpointPort();
-    final private DomainEndpoint domainEndpoint = new DomainEndpointService().getDomainEndpointPort();
+//    final private DomainEndpoint domainEndpoint = new DomainEndpointService().getDomainEndpointPort();
 
     private Session session;
 
@@ -101,10 +101,10 @@ public class Bootstrap implements IServiceLocator {
     public ProjectEndpoint getProjectEndpoint(){
         return projectEndpoint;
     }
-    @Override
-    public TaskEndpoint getTaskEndpoint() {
-        return taskEndpoint;
-    }
+//    @Override
+//    public TaskEndpoint getTaskEndpoint() {
+//        return taskEndpoint;
+//    }
     @Override
     public UserEndpoint getUserEndpoint() {
         return userEndpoint;
@@ -113,10 +113,10 @@ public class Bootstrap implements IServiceLocator {
     public SessionEndpoint getSessionEndpoint() {
         return sessionEndpoint;
     }
-    @Override
-    public DomainEndpoint getDomainEndpoint() {
-        return domainEndpoint;
-    }
+//    @Override
+//    public DomainEndpoint getDomainEndpoint() {
+//        return domainEndpoint;
+//    }
 
     @Override
     public Session getSession() {

@@ -18,10 +18,10 @@ public class TaskService {
         this.projectRepository = projectRepository;
     }
 
-    public void createTask(final String userID, final String projectId, final String name, final String description) throws IOException {
-        if (projectRepository.getProjectById(projectId) == null) throw new IOException();
-        taskRepository.createTask(userID, projectId, name, description);
-    }
+//    public void createTask(final String userID, final String projectId, final String name, final String description) throws IOException {
+//        if (projectRepository.getProjectById(projectId) == null) throw new IOException();
+//        taskRepository.createTask(userID, projectId, name, description);
+//    }
 
     public void deleteTask(final String taskId) throws IOException {
         if (taskRepository.getTaskById(taskId) == null) throw new IOException();

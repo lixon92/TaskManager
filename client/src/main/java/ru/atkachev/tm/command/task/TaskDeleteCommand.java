@@ -17,16 +17,16 @@ public class TaskDeleteCommand extends AbstractCommand {
 
     @Override
     public void execute(){
-        final Session session = serviceLocator.getSession();
-
-        System.out.print("enter id of task: ");
-        final String taskId = serviceLocator.getConsoleServiceString();
-
-        try{
-            serviceLocator.getTaskEndpoint().deleteTask(session, taskId);
-        } catch (ru.atkachev.tm.endpoint.IOException_Exception e){
-            System.out.println("Задача не найдена.");
-        }
+//        final Session session = serviceLocator.getSession();
+//
+//        System.out.print("enter id of task: ");
+//        final String taskId = serviceLocator.getConsoleServiceString();
+//
+//        try{
+//            serviceLocator.getTaskEndpoint().deleteTask(session, taskId);
+//        } catch (ru.atkachev.tm.endpoint.IOException_Exception e){
+//            System.out.println("Задача не найдена.");
+//        }
     }
 
     @Override

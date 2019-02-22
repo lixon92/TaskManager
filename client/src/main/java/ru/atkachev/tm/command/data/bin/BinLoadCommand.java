@@ -24,11 +24,11 @@ public class BinLoadCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().binLoad();
-        } catch (IOException_Exception | ClassNotFoundException_Exception e) {
-            System.out.println("Error load bin");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().binLoad();
+//        } catch (IOException_Exception | ClassNotFoundException_Exception e) {
+//            System.out.println("Error load bin");
+//        }
     }
 
     @Override

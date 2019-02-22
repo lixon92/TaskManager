@@ -23,11 +23,11 @@ public class JSONSaveCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        try {
-            serviceLocator.getDomainEndpoint().jsonSave();
-        } catch (IOException_Exception e) {
-            System.out.println("Error save!");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().jsonSave();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error save!");
+//        }
     }
 
     @Override

@@ -20,11 +20,11 @@ public class XMLSaveCommand extends AbstractCommand {
 
     @Override
     public void execute(){
-        try {
-            serviceLocator.getDomainEndpoint().xmlSave();
-        } catch (IOException_Exception e) {
-            System.out.println("Error save!");
-        }
+//        try {
+//            serviceLocator.getDomainEndpoint().xmlSave();
+//        } catch (IOException_Exception e) {
+//            System.out.println("Error save!");
+//        }
     }
 
     @Override
