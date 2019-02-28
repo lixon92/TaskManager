@@ -1,16 +1,36 @@
 package ru.atkachev.tm.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
+@Entity
 public class Project implements Serializable {
 
-    private Date dateCreated = new Date();
+    @Id
     private String id = UUID.randomUUID().toString();
-    private String describe;
+    private Date dateCreated = new Date();
+    private String description;
     private String name;
+
+//    @OneToOne()
+    private User user;
     private String userId;
+    public Project(){
+
+    }
+
+//    public Project(User user){
+//        this.user = user;
+//    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Date getDateCreated() {
         return dateCreated;
@@ -27,10 +47,10 @@ public class Project implements Serializable {
     }
 
     public String getDescribe() {
-        return describe;
+        return description;
     }
     public void setDescribe(final String describe) {
-        this.describe = describe;
+        this.description = describe;
     }
 
     public String getName() {

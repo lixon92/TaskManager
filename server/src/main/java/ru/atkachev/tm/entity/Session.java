@@ -2,11 +2,18 @@ package ru.atkachev.tm.entity;
 
 import ru.atkachev.tm.util.ValidateSession;
 
+import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
+@Table(name = "sessions")
 public class Session {
 
-    private String id;
+    @Id
+    private String id = UUID.randomUUID().toString();
+
+    @OneToOne
+    private User user;
     private String userId;
     private long timeStamp;
     private String sign;
@@ -16,6 +23,13 @@ public class Session {
         this.id = UUID.randomUUID().toString();
         this.timeStamp = System.currentTimeMillis();
         this.sign = ValidateSession.sign(id, userId, timeStamp);
+    }
+
+    public Session(final User user){
+        this.user = user;
+        this.id = UUID.randomUUID().toString();
+        this.timeStamp = System.currentTimeMillis();
+        this.sign = ValidateSession.sign(id, user.getId(), timeStamp);
     }
 
     public Session(){

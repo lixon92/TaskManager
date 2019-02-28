@@ -4,6 +4,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import java.util.*;
 
 public class UserRepository {
@@ -13,6 +15,7 @@ public class UserRepository {
     }
 
     final private Map<String, User> userMap = new HashMap<>();
+    final private EntityManager em = Persistence.createEntityManagerFactory("ConnectDB").createEntityManager();
 
     private void init(){
         final User adminUser = new User();
@@ -30,7 +33,23 @@ public class UserRepository {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPassword(password);
-        userMap.put(user.getID(), user);
+        userMap.put(user.getId(), user);
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
+    }
+
+    public User createUser(final String login, final String firstName, final String password){
+        User user = new User();
+        user.setLogin(login);
+        user.setFirstName(firstName);
+        user.setLastName("empty");
+        user.setPassword(password);
+        userMap.put(user.getId(), user);
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
+        return user;
     }
 
     public boolean doesUserExist(final String userLogin, final String userPassword){
@@ -45,7 +64,7 @@ public class UserRepository {
     public String getUserId(final String userLogin, final String userPassword){
         for (final User user : userMap.values()){
             if ( user.getLogin().equals(userLogin ) && user.getPassword().equals(userPassword) ){
-                return user.getID();
+                return user.getId();
             }
         }
         return null;
@@ -53,7 +72,7 @@ public class UserRepository {
 
     public void setUserList(Collection<User> userList){
         for (User user : userList){
-            userMap.put(user.getID(), user);
+            userMap.put(user.getId(), user);
         }
     }
 

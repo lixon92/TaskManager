@@ -10,17 +10,17 @@ import java.util.Collection;
 
 @WebService
 public class UserEndpoint {
-    final private UserService userEndpoint;
+    final private UserService userService;
 
     public UserEndpoint(
             @WebParam(name = "userService")final UserService userService){
-        this.userEndpoint = userService;
+        this.userService = userService;
     }
     @WebMethod
     public User findUser(
             @WebParam(name = "userLogin")final String userLogin,
             @WebParam(name = "userPassword")final String userPassword) {
-        return userEndpoint.findUser(userLogin, userPassword);
+        return userService.findUser(userLogin, userPassword);
     }
     @WebMethod
     public void createUser(
@@ -28,23 +28,23 @@ public class UserEndpoint {
             @WebParam(name = "firstName")final String firstName,
             @WebParam(name = "lastName")final String lastName,
             @WebParam(name = "password")final String password) {
-        userEndpoint.createUser(login, firstName, lastName, password);
+        userService.createUser(login, firstName, lastName, password);
     }
     @WebMethod
     public boolean doesUserExist(
             @WebParam(name = "userLogin") final String userLogin,
             @WebParam(name = "userPassword") final String userPassword) {
-        return userEndpoint.doesUserExist(userLogin, userPassword);
+        return userService.doesUserExist(userLogin, userPassword);
     }
     @WebMethod
     public String getUserId(
             @WebParam(name = "userLogin")final String userLogin,
             @WebParam(name = "userPassword")final String userPassword) {
-        return userEndpoint.getUserId(userLogin, userPassword);
+        return userService.getUserId(userLogin, userPassword);
     }
 
     @WebMethod
     public Collection<User> getUserList() {
-        return userEndpoint.getUserList();
+        return userService.getUserList();
     }
 }

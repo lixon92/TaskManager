@@ -2,6 +2,8 @@ package ru.atkachev.tm.repository;
 
 import ru.atkachev.tm.entity.Project;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.Map;
 public class ProjectRepository {
 
     final private Map<String, Project> projectMap = new HashMap<>();
+    final private EntityManager em = Persistence.createEntityManagerFactory("ConnectDB").createEntityManager();
 
     public void createProject(final String userId, final String name, final String description){
         final Project project = new Project();
@@ -17,6 +20,10 @@ public class ProjectRepository {
         project.setName(name);
         project.setDescribe(description);
         projectMap.put(project.getId(), project);
+        em.getTransaction().begin();
+        em.merge(project);
+        em.getTransaction().commit();
+
     }
 
     public void deleteProject(final String projectId){

@@ -29,6 +29,10 @@ public class UserService {
         userRepository.createUser(login, firstName, lastName, password);
     }
 
+    public User createUser(final String login, final String firstName, final String password) {
+        return userRepository.createUser(login, firstName, password);
+    }
+
     public boolean doesUserExist(final String userLogin, final String userPassword) {
         return userRepository.doesUserExist(userLogin, userPassword);
     }

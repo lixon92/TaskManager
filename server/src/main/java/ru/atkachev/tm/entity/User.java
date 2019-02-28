@@ -1,16 +1,23 @@
 package ru.atkachev.tm.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Entity
 public class User implements Serializable {
 
-    private String ID = UUID.randomUUID().toString();
+    @Id
+    private String Id = UUID.randomUUID().toString();
     private String password;
     private String firstName;
     private String lastName;
     private String login;
-    private Role role = Role.USER;
+    private Role role = Role.ADMIN;
+
+    public User(){
+
+    }
 
     public Role getRole() {
         return role;
@@ -19,11 +26,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return Id;
     }
-    public void setID(final String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getPassword() {
