@@ -1,12 +1,18 @@
 package ru.atkachev.tm.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.atkachev.tm.util.ValidateSession;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "sessions")
+@Table(name = "SESSION_TBL")
 public class Session {
 
     @Id
@@ -32,35 +38,14 @@ public class Session {
         this.sign = ValidateSession.sign(id, user.getId(), timeStamp);
     }
 
-    public Session(){
-
-    }
-
-    public void setUserId(final String userId) {
-        this.userId = userId;
-    }
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setId(final String id) {
-        this.id = id;
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setSign(final String sign) {
-        this.sign = sign;
-    }
-    public String getSign() {
-        return sign;
-    }
-
-    public void setTimeStamp(final long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-    public long getTimeStamp() {
-        return timeStamp;
+    @Override
+    public String toString() {
+        return "Session{" +
+                "id='" + id + '\'' +
+                ", user=" + user +
+                ", userId='" + userId + '\'' +
+                ", timeStamp=" + timeStamp +
+                ", sign='" + sign + '\'' +
+                '}';
     }
 }

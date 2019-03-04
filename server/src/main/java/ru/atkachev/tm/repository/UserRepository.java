@@ -1,21 +1,26 @@
 package ru.atkachev.tm.repository;
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
 import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.*;
 
+@NoArgsConstructor
 public class UserRepository {
 
-    public UserRepository(){
-        init();
-    }
+    private EntityManager em;
 
     final private Map<String, User> userMap = new HashMap<>();
-    final private EntityManager em = Persistence.createEntityManagerFactory("ConnectDB").createEntityManager();
+
+    public UserRepository(final EntityManager em){
+        this.em = em;
+        init();
+    }
 
     private void init(){
         final User adminUser = new User();
@@ -27,33 +32,71 @@ public class UserRepository {
         userMap.put("admin", adminUser);
     }
 
-    public void createUser(final String login, final String firstName, final String lastName, final String password){
+    public void begin(){
+        em.getTransaction().begin();
+    }
+
+    public void commit(){
+        em.getTransaction().commit();
+    }
+
+    public void close(){
+        em.close();
+    }
+
+    public User createUser(
+            final String login,
+            final String firstName,
+            final String lastName,
+            final String password
+    ){
         User user = new User();
         user.setLogin(login);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPassword(password);
         userMap.put(user.getId(), user);
-        em.getTransaction().begin();
-        em.merge(user);
-        em.getTransaction().commit();
-    }
-
-    public User createUser(final String login, final String firstName, final String password){
-        User user = new User();
-        user.setLogin(login);
-        user.setFirstName(firstName);
-        user.setLastName("empty");
-        user.setPassword(password);
-        userMap.put(user.getId(), user);
-        em.getTransaction().begin();
-        em.merge(user);
-        em.getTransaction().commit();
+        em.persist(user);
         return user;
     }
 
+    public User updateUser(
+            final String userId,
+            final String login,
+            final String password,
+            final String firstName,
+            final String lastName,
+            final Role role
+    ){
+        User user = new User();
+        user.setId(userId);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setRole(role);
+        em.merge(user);
+        return user;
+    }
+
+    public void removeUser(String userId){
+        User user = new User();
+        user.setId(userId);
+        em.remove(em.contains(user) ? user : em.merge(user));
+    }
+
+    public User getUserById(String userId){
+        return em.find(User.class, userId);
+    }
+
+    public User getUserByLogin(String login){
+        Query query = em.createQuery("select u from User u where u.login = :login")
+                .setParameter("login", login);
+        return (User)query.getSingleResult();
+    }
+
     public boolean doesUserExist(final String userLogin, final String userPassword){
-        for (User user : userMap.values()){
+        for (final User user : userMap.values()){
             if ( user.getLogin().equals(userLogin ) && user.getPassword().equals(userPassword)){
                 return true;
             }
@@ -77,6 +120,7 @@ public class UserRepository {
     }
 
     public Collection<User> getUserList(){
-        return userMap.values();
+        TypedQuery<User> namedQuery = em.createNamedQuery("User.getAll", User.class);
+        return namedQuery.getResultList();
     }
 }

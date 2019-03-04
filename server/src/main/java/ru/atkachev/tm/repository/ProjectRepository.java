@@ -3,6 +3,7 @@ package ru.atkachev.tm.repository;
 import ru.atkachev.tm.entity.Project;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,18 +13,20 @@ import java.util.Map;
 public class ProjectRepository {
 
     final private Map<String, Project> projectMap = new HashMap<>();
-    final private EntityManager em = Persistence.createEntityManagerFactory("ConnectDB").createEntityManager();
+//    final private EntityManagerFactory emf = Persistence.createEntityManagerFactory("DEVELOPMENT");
+//    final private EntityManager em = emf.createEntityManager();
 
     public void createProject(final String userId, final String name, final String description){
         final Project project = new Project();
         project.setUserId(userId);
         project.setName(name);
-        project.setDescribe(description);
+        project.setDescription(description);
         projectMap.put(project.getId(), project);
-        em.getTransaction().begin();
-        em.merge(project);
-        em.getTransaction().commit();
-
+//        em.getTransaction().begin();
+//        em.merge(project);
+//        em.getTransaction().commit();
+//        em.close();
+//        emf.close();
     }
 
     public void deleteProject(final String projectId){
@@ -32,7 +35,7 @@ public class ProjectRepository {
 
     public void updateProject(final String projectId, final String name, final String description ){
         projectMap.get(projectId).setName(name);
-        projectMap.get(projectId).setDescribe(description);
+        projectMap.get(projectId).setDescription(description);
     }
 
     public Collection<Project> getProjectList(){

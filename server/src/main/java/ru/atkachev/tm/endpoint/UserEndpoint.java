@@ -16,12 +16,12 @@ public class UserEndpoint {
             @WebParam(name = "userService")final UserService userService){
         this.userService = userService;
     }
-    @WebMethod
-    public User findUser(
-            @WebParam(name = "userLogin")final String userLogin,
-            @WebParam(name = "userPassword")final String userPassword) {
-        return userService.findUser(userLogin, userPassword);
-    }
+    //    @WebMethod
+//    public User findUser(
+//            @WebParam(name = "userLogin")final String userLogin,
+//            @WebParam(name = "userPassword")final String userPassword) {
+//        return userService.findUser(userLogin, userPassword);
+//    }
     @WebMethod
     public void createUser(
             @WebParam(name = "login")final String login,
@@ -36,15 +36,15 @@ public class UserEndpoint {
             @WebParam(name = "userPassword") final String userPassword) {
         return userService.doesUserExist(userLogin, userPassword);
     }
-    @WebMethod
-    public String getUserId(
-            @WebParam(name = "userLogin")final String userLogin,
-            @WebParam(name = "userPassword")final String userPassword) {
-        return userService.getUserId(userLogin, userPassword);
-    }
+//    @WebMethod
+//    public String getUserId(
+//            @WebParam(name = "userLogin")final String userLogin,
+//            @WebParam(name = "userPassword")final String userPassword) {
+//        return userService.getUserId(userLogin, userPassword);
+//    }
 
-    @WebMethod
-    public Collection<User> getUserList() {
-        return userService.getUserList();
-    }
+//    @WebMethod
+//    public Collection<User> getUserList() {
+//        return userService.getUserList();
+//    }
 }

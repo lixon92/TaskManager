@@ -1,10 +1,20 @@
 package ru.atkachev.tm.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
+@Table(name = "USER_TBL")
+@NamedQuery(name = "User.getAll", query = "SELECT u from User u")
+//@NamedQuery(name = "getUserByLogin", query = "select u from User u where login = ")
 public class User implements Serializable {
 
     @Id
@@ -12,53 +22,20 @@ public class User implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String login;
+    @Enumerated(EnumType.STRING)
     private Role role = Role.ADMIN;
 
-    public User(){
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id='" + Id + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", role=" + role +
+                '}';
     }
-
-    public Role getRole() {
-        return role;
-    }
-    public void setRole(final Role role) {
-        this.role = role;
-    }
-
-    public String getId() {
-        return Id;
-    }
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-    public void setLogin(final String login) {
-        this.login = login;
-    }
-
 }
