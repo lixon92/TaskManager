@@ -7,13 +7,14 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-@Entity
-@Table(name = "PROJECT_TBL")
 @Setter
 @Getter
+@Entity
 @NoArgsConstructor
+@Table(name = "PROJECT_TBL")
 public class Project implements Serializable {
 
     @Id
@@ -21,8 +22,24 @@ public class Project implements Serializable {
     private Date dateCreated = new Date();
     private String description;
     private String name;
+
+    @ManyToOne
     private User user;
 
-    private String userId;
+    @OneToMany(mappedBy = "project")
+    List<Task> taskList;
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id='" + id + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", user=" + user +
+                '}';
+    }
 
 }
+
+

@@ -15,16 +15,17 @@ public class Bootstrap implements IServiceLocator {
     final private IServiceLocator serviceLocator = this;
     final private UserService userService = new UserService(serviceLocator);
     final private SessionService sessionService = new SessionService(serviceLocator);
+    final private ProjectService projectService = new ProjectService(serviceLocator);
+    final private TaskService taskService = new TaskService(serviceLocator);
 
     final private EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("DEVELOPMENT");
 
-    final private ProjectRepository projectRepository = new ProjectRepository();
     final private TaskRepository taskRepository = new TaskRepository();
     final private UserRepository userRepository = new UserRepository();
+    final private ProjectRepository projectRepository = new ProjectRepository();
 
-    final private TaskService taskService = new TaskService(taskRepository, projectRepository);
-    final private ProjectService projectService = new ProjectService(projectRepository, taskRepository);
+
     final private DomainService domainService = new DomainService(projectRepository, taskRepository, userRepository);
 
     final private ProjectEndpoint projectEndpoint = new ProjectEndpoint(projectService);

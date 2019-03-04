@@ -1,33 +1,53 @@
 package ru.atkachev.tm.repository;
 
+import lombok.NoArgsConstructor;
 import ru.atkachev.tm.entity.Project;
-
+import ru.atkachev.tm.entity.User;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+@NoArgsConstructor
 public class ProjectRepository {
 
-    final private Map<String, Project> projectMap = new HashMap<>();
-//    final private EntityManagerFactory emf = Persistence.createEntityManagerFactory("DEVELOPMENT");
-//    final private EntityManager em = emf.createEntityManager();
+    private EntityManager em;
 
-    public void createProject(final String userId, final String name, final String description){
+    public ProjectRepository(EntityManager em){
+        this.em = em;
+    }
+
+    public void begin(){
+        em.getTransaction().begin();
+    }
+    public void commit(){
+        em.getTransaction().commit();
+    }
+    public void close(){
+        em.close();
+    }
+
+    final private Map<String, Project> projectMap = new HashMap<>();
+
+    public Project createProject(
+            User user,
+            final String name,
+            final String description
+    ){
         final Project project = new Project();
-        project.setUserId(userId);
+        project.setUser(user);
         project.setName(name);
         project.setDescription(description);
-        projectMap.put(project.getId(), project);
-//        em.getTransaction().begin();
-//        em.merge(project);
-//        em.getTransaction().commit();
-//        em.close();
-//        emf.close();
+        em.persist(project);
+        return project;
     }
+
+    public Project getProjectById(String projectId){
+        return em.find(Project.class, projectId);
+    }
+
+
+
 
     public void deleteProject(final String projectId){
         projectMap.remove(projectId);
@@ -41,10 +61,10 @@ public class ProjectRepository {
     public Collection<Project> getProjectList(){
         return projectMap.values();
     }
+//    public Project getProjectById(final String projectId){
+//        return projectMap.get(projectId);
 
-    public Project getProjectById(final String projectId){
-        return projectMap.get(projectId);
-    }
+//    }
 
     public void setProjectList(final Collection<Project> projectList) {
         for (final Project project : projectList) {

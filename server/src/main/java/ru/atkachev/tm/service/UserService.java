@@ -4,10 +4,7 @@ import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.UserRepository;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import java.util.Collection;
 
 public class UserService {
 
@@ -69,31 +66,20 @@ public class UserService {
     public User getUserById(String userId){
         if(userId == null || userId.isEmpty()) return null;
         UserRepository repository = getRepository();
-        repository.begin();
-        User user = repository.getUserById(userId);
-        repository.commit();
-        repository.close();
-        return user;
+        return repository.getUserById(userId);
     }
 
     public User getUserByLogin(String login){
         if(login == null || login.isEmpty()) return null;
         UserRepository repository = getRepository();
-        repository.begin();
-        final User user = repository.getUserByLogin(login);
-        repository.commit();
-        repository.close();
-        return user;
+        return repository.getUserByLogin(login);
     }
 
     public boolean doesUserExist(final String login, final String password) {
         if(login == null || login.isEmpty()) return false;
         if(password == null || password.isEmpty()) return false;
         UserRepository repository = getRepository();
-        repository.begin();
         final User user = repository.getUserByLogin(login);
-        repository.commit();
-        repository.close();
         if(user == null) return false;
         return true;
     }
