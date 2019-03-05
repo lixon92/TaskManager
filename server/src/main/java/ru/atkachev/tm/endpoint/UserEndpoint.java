@@ -13,38 +13,33 @@ public class UserEndpoint {
     final private UserService userService;
 
     public UserEndpoint(
-            @WebParam(name = "userService")final UserService userService){
+            @WebParam(name = "userService")final UserService userService
+    ){
         this.userService = userService;
     }
-    //    @WebMethod
-//    public User findUser(
-//            @WebParam(name = "userLogin")final String userLogin,
-//            @WebParam(name = "userPassword")final String userPassword) {
-//        return userService.findUser(userLogin, userPassword);
-//    }
+
     @WebMethod
     public void createUser(
             @WebParam(name = "login")final String login,
             @WebParam(name = "firstName")final String firstName,
             @WebParam(name = "lastName")final String lastName,
-            @WebParam(name = "password")final String password) {
+            @WebParam(name = "password")final String password
+    ) {
         userService.createUser(login, firstName, lastName, password);
     }
-    @WebMethod
-    public boolean doesUserExist(
-            @WebParam(name = "userLogin") final String userLogin,
-            @WebParam(name = "userPassword") final String userPassword) {
-        return userService.doesUserExist(userLogin, userPassword);
-    }
-//    @WebMethod
-//    public String getUserId(
-//            @WebParam(name = "userLogin")final String userLogin,
-//            @WebParam(name = "userPassword")final String userPassword) {
-//        return userService.getUserId(userLogin, userPassword);
-//    }
 
-//    @WebMethod
-//    public Collection<User> getUserList() {
-//        return userService.getUserList();
-//    }
+    @WebMethod
+    public User getUserByLogin(
+            @WebParam(name = "userLogin")final String userLogin,
+            @WebParam(name = "userPassword")final String userPassword
+    ) {
+        final User user = userService.getUserByLogin(userLogin);
+        if(user.getPassword().equals(userPassword)) return user;
+        return null;
+    }
+
+    @WebMethod
+    public Collection<User> getUserList() {
+        return userService.getUserList();
+    }
 }

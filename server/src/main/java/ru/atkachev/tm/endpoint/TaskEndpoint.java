@@ -37,7 +37,7 @@ public class TaskEndpoint {
             @WebParam(name = "taskId") final String taskId
     ) throws IOException {
         ValidateSession.validate(session);
-        taskService.deleteTask(taskId);
+        taskService.removeTask(taskId);
     }
 
     @WebMethod

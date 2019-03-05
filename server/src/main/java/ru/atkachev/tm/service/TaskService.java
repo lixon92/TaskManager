@@ -7,11 +7,9 @@ import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.ProjectRepository;
 import ru.atkachev.tm.repository.TaskRepository;
 import ru.atkachev.tm.repository.UserRepository;
-
 import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 public class TaskService {
 
@@ -60,27 +58,47 @@ public class TaskService {
         return task;
     }
 
-    public void deleteTask(final String taskId) throws IOException {
-//        if (taskRepository.getTaskById(taskId) == null) throw new IOException();
-//        taskRepository.deleteTask(taskId);
-    }
-
-    public void updateTask(final String taskId, final String name, final String description) {
-//        taskRepository.updateTask(taskId, name, description);
+    public Task getTaskById(final String taskId) {
+        if(taskId == null || taskId.isEmpty()) return null;
+        TaskRepository taskRepository = getTaskRepository();
+        return taskRepository.getTaskById(taskId);
     }
 
     public Collection<Task> getTaskList() {
-//        return taskRepository.getTaskList();
-        return null;
+        TaskRepository taskRepository = getTaskRepository();
+        return taskRepository.getTaskList();
+    }
+
+    public Task updateTask(
+            final String taskId,
+            final String name,
+            final String description) {
+        TaskRepository taskRepository = getTaskRepository();
+        taskRepository.begin();
+        Task task = taskRepository.updateTask(
+                taskId,
+                name,
+                description);
+        taskRepository.commit();
+        taskRepository.close();
+        return task;
     }
 
     public void setTaskList(final Collection<Task> taskList) {
-//        taskRepository.setTaskList(taskList);
+        TaskRepository taskRepository = getTaskRepository();
+        taskRepository.begin();
+        taskRepository.setTaskList(taskList);
+        taskRepository.commit();
+        taskRepository.close();
     }
 
-    public Task getTaskById(final String taskId) {
-//        return taskRepository.getTaskById(taskId);
-        return null;
+    public void removeTask(final String taskId) throws IOException {
+        if(taskId == null || taskId.isEmpty()) return;
+        TaskRepository taskRepository = getTaskRepository();
+        taskRepository.begin();
+        taskRepository.deleteTask(taskId);
+        taskRepository.commit();
+        taskRepository.close();
     }
 
 }

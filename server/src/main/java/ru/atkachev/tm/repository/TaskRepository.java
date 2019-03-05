@@ -4,12 +4,9 @@ import lombok.NoArgsConstructor;
 import ru.atkachev.tm.entity.Project;
 import ru.atkachev.tm.entity.Task;
 import ru.atkachev.tm.entity.User;
-
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @NoArgsConstructor
 public class TaskRepository {
@@ -30,8 +27,6 @@ public class TaskRepository {
         em.close();
     }
 
-    final private Map<String, Task> taskMap = new HashMap<>();
-
     public Task createTask(
             final User user,
             final Project project,
@@ -47,26 +42,37 @@ public class TaskRepository {
         return task;
     }
 
-    public void deleteTask(final String taskId){
-        taskMap.remove(taskId);
-    }
-
-    public void updateTask(final String taskId, final String name, final String description){
-        taskMap.get(taskId).setName(name);
-//        taskMap.get(taskId).setDescription(description);
-    }
-
-    public void setTaskList(final Collection<Task> taskList) {
-        for (Task task : taskList) {
-            taskMap.put(task.getId(), task);
-        }
-    }
-
     public Task getTaskById(final String taskId){
-        return taskMap.get(taskId);
+        return em.find(Task.class, taskId);
     }
 
     public Collection<Task> getTaskList() {
-        return taskMap.values();
+        final TypedQuery<Task> namedQuery =
+                em.createNamedQuery("getAllTasks", Task.class);
+        return namedQuery.getResultList();
     }
+
+    public Task updateTask(
+            final String taskId,
+            final String name,
+            final String description
+    ){
+        Task task = new Task();
+        task.setId(taskId);
+        task.setName(name);
+        task.setDescription(description);
+        em.merge(task);
+        return task;
+    }
+
+    public void setTaskList(final Collection<Task> taskList) {
+        em.merge(taskList);
+    }
+
+    public void deleteTask(final String taskId){
+        final Task task = new Task();
+        task.setId(taskId);
+        em.remove(em.contains(task) ? task : em.merge(task));
+    }
+
 }

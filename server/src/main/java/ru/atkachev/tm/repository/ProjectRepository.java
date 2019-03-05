@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import ru.atkachev.tm.entity.Project;
 import ru.atkachev.tm.entity.User;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +28,6 @@ public class ProjectRepository {
         em.close();
     }
 
-    final private Map<String, Project> projectMap = new HashMap<>();
-
     public Project createProject(
             User user,
             final String name,
@@ -42,33 +41,36 @@ public class ProjectRepository {
         return project;
     }
 
-    public Project getProjectById(String projectId){
+    public Project getProjectById(final String projectId){
         return em.find(Project.class, projectId);
     }
 
-
-
-
-    public void deleteProject(final String projectId){
-        projectMap.remove(projectId);
-    }
-
-    public void updateProject(final String projectId, final String name, final String description ){
-        projectMap.get(projectId).setName(name);
-        projectMap.get(projectId).setDescription(description);
-    }
-
     public Collection<Project> getProjectList(){
-        return projectMap.values();
+        final TypedQuery<Project> namedQuery =
+                em.createNamedQuery("getAllProjects", Project.class);
+        return namedQuery.getResultList();
     }
-//    public Project getProjectById(final String projectId){
-//        return projectMap.get(projectId);
 
-//    }
+    public Project updateProject(
+            final String projectId,
+            final String name,
+            final String description
+    ){
+        Project project = new Project();
+        project.setId(projectId);
+        project.setName(name);
+        project.setDescription(description);
+        em.merge(project);
+        return project;
+    }
 
     public void setProjectList(final Collection<Project> projectList) {
-        for (final Project project : projectList) {
-            projectMap.put(project.getId(), project);
-        }
+        em.merge(projectList);
+    }
+
+    public void deleteProject(final String projectId){
+        final Project project = new Project();
+        project.setId(projectId);
+        em.remove(em.contains(project) ? project : em.merge(project));
     }
 }

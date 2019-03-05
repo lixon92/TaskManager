@@ -4,8 +4,6 @@ import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.endpoint.*;
 import ru.atkachev.tm.repository.*;
 import ru.atkachev.tm.service.*;
-
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
@@ -24,9 +22,8 @@ public class Bootstrap implements IServiceLocator {
     final private TaskRepository taskRepository = new TaskRepository();
     final private UserRepository userRepository = new UserRepository();
     final private ProjectRepository projectRepository = new ProjectRepository();
-
-
     final private DomainService domainService = new DomainService(projectRepository, taskRepository, userRepository);
+
 
     final private ProjectEndpoint projectEndpoint = new ProjectEndpoint(projectService);
     final private TaskEndpoint taskEndpoint = new TaskEndpoint(taskService);

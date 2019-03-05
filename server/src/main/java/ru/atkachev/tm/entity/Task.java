@@ -3,11 +3,10 @@ package ru.atkachev.tm.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -15,8 +14,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "TASK_TBL")
 @NoArgsConstructor
+@Table(name = "TASK_TBL")
+@NamedQuery(name = "getAllTasks", query = "SELECT t from Task t")
 public class Task implements Serializable {
 
     @Id
@@ -44,3 +44,4 @@ public class Task implements Serializable {
     }
 
 }
+

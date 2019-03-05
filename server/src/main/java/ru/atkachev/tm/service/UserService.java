@@ -5,6 +5,7 @@ import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.UserRepository;
 import javax.persistence.EntityManager;
+import java.util.Collection;
 
 public class UserService {
 
@@ -55,7 +56,7 @@ public class UserService {
     }
 
     public void removeUser(String userId){
-//        if (userId == null)
+        if (userId == null) return;
         UserRepository repository = getRepository();
         repository.begin();
         repository.removeUser(userId);
@@ -75,13 +76,9 @@ public class UserService {
         return repository.getUserByLogin(login);
     }
 
-    public boolean doesUserExist(final String login, final String password) {
-        if(login == null || login.isEmpty()) return false;
-        if(password == null || password.isEmpty()) return false;
+    public Collection<User> getUserList(){
         UserRepository repository = getRepository();
-        final User user = repository.getUserByLogin(login);
-        if(user == null) return false;
-        return true;
+        return repository.getUserList();
     }
 
 }

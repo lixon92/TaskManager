@@ -5,7 +5,6 @@ import ru.atkachev.tm.entity.Session;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.SessionRepository;
 import ru.atkachev.tm.repository.UserRepository;
-
 import javax.persistence.EntityManager;
 import java.io.IOException;
 
@@ -20,11 +19,9 @@ public class SessionService {
     private EntityManager createEntityManager(){
         return serviceLocator.getEntityManagerFactory().createEntityManager();
     }
-
     private SessionRepository getSessionRepository(){
         return new SessionRepository(createEntityManager());
     }
-
     private UserRepository getUserRepository(){
         return new UserRepository(createEntityManager());
     }
@@ -45,9 +42,6 @@ public class SessionService {
         sessionRepository.close();
 
         return session;
-//        final String userId = userRepository.getUserId(login, password);
-//        if (userId == null) throw new IOException();
-//        return sessionRepository.sessionStart(userId);
     }
 
     public void sessionClose(Session session){

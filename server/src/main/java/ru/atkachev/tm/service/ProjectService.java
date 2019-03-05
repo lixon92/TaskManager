@@ -2,6 +2,7 @@ package ru.atkachev.tm.service;
 
 import ru.atkachev.tm.api.IServiceLocator;
 import ru.atkachev.tm.entity.Project;
+import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.Session;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.repository.ProjectRepository;
@@ -33,12 +34,6 @@ public class ProjectService {
         return new UserRepository(createEntityManager());
     }
 
-    public Project getProjectById(final String projectId) {
-        if(projectId == null || projectId.isEmpty()) return null;
-        ProjectRepository repository = getProjectRepository();
-        return repository.getProjectById(projectId);
-    }
-
     public Project createProject(
             final String userId,
             final String name,
@@ -60,21 +55,47 @@ public class ProjectService {
         return project;
     }
 
-    public void updateProject(final String projectId, final String name, final String description) {
-//        projectRepository.updateProject(projectId, name, description);
-    }
-
-    public void deleteProject(final String projectId) throws IOException {
-//        if(projectRepository.getProjectById(projectId) == null) throw new IOException();
-//        projectRepository.deleteProject(projectId);
+    public Project getProjectById(final String projectId) {
+        if(projectId == null || projectId.isEmpty()) return null;
+        ProjectRepository repository = getProjectRepository();
+        return repository.getProjectById(projectId);
     }
 
     public Collection<Project> getProjectList() {
-//        return projectRepository.getProjectList();
-        return null;
+        ProjectRepository projectRepository = getProjectRepository();
+        return projectRepository.getProjectList();
+    }
+
+    public Project updateProject(
+            final String projectId,
+            final String name,
+            final String description
+    ) {
+        ProjectRepository projectRepository = getProjectRepository();
+        projectRepository.begin();
+        Project project = projectRepository.updateProject(
+                projectId,
+                name,
+                description);
+        projectRepository.commit();
+        projectRepository.close();
+        return project;
     }
 
     public void setProjectList(final List<Project> projectList) {
-//        projectRepository.setProjectList(projectList);
+        ProjectRepository projectRepository = getProjectRepository();
+        projectRepository.begin();
+        projectRepository.setProjectList(projectList);
+        projectRepository.commit();
+        projectRepository.close();
+    }
+
+    public void removeProject(final String projectId) throws IOException {
+        if(projectId == null || projectId.isEmpty()) return;
+        ProjectRepository projectRepository = getProjectRepository();
+        projectRepository.begin();
+        projectRepository.deleteProject(projectId);
+        projectRepository.commit();
+        projectRepository.close();
     }
 }

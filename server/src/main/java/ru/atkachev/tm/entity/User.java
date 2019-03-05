@@ -14,7 +14,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "USER_TBL")
 @NamedQuery(name = "User.getAll", query = "SELECT u from User u")
-//@NamedQuery(name = "getUserByLogin", query = "select u from User u where login = ")
 public class User implements Serializable {
 
     @Id

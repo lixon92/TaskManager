@@ -3,6 +3,8 @@ package ru.atkachev.tm.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @Table(name = "PROJECT_TBL")
+@NamedQuery(name = "getAllProjects", query = "SELECT p from Project p")
 public class Project implements Serializable {
 
     @Id
@@ -26,7 +29,10 @@ public class Project implements Serializable {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(
+            mappedBy = "project",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     List<Task> taskList;
 
     @Override

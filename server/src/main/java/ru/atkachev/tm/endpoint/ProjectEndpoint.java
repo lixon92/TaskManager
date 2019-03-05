@@ -56,7 +56,7 @@ public class ProjectEndpoint {
         @WebParam(name = "projectId") final String projectId
     ) throws IOException {
         ValidateSession.validate(session);
-        projectService.deleteProject(projectId);
+        projectService.removeProject(projectId);
     }
 
     @WebMethod
