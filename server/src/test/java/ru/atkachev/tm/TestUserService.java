@@ -14,7 +14,7 @@ public class TestUserService {
     @Test
     public void testCreateUser() throws Exception{
         User user = userService.createUser(
-                "user3",
+                "user",
                 "name",
                 "surname",
                 "1234");

@@ -71,6 +71,6 @@ public class ProjectRepository {
     public void deleteProject(final String projectId){
         final Project project = new Project();
         project.setId(projectId);
-        em.remove(em.contains(project) ? project : em.merge(project));
+        em.remove(em.find(Project.class, projectId));
     }
 }

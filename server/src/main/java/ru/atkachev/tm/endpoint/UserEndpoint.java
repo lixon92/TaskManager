@@ -1,5 +1,6 @@
 package ru.atkachev.tm.endpoint;
 
+import lombok.NoArgsConstructor;
 import ru.atkachev.tm.entity.User;
 import ru.atkachev.tm.service.UserService;
 
@@ -9,8 +10,9 @@ import javax.jws.WebService;
 import java.util.Collection;
 
 @WebService
+@NoArgsConstructor
 public class UserEndpoint {
-    final private UserService userService;
+    private UserService userService;
 
     public UserEndpoint(
             @WebParam(name = "userService")final UserService userService

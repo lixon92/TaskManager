@@ -37,4 +37,5 @@ public class UserCreateCommand extends AbstractCommand {
     public boolean isSecure() {
         return false;
     }
+
 }

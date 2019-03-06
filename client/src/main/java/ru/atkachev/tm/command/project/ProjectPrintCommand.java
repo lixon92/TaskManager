@@ -16,17 +16,17 @@ public class ProjectPrintCommand extends AbstractCommand {
     }
 
     public void execute(){
-
-        final Session session = serviceLocator.getSession();
-        if (serviceLocator.getProjectEndpoint().getProjectList(session).isEmpty()){
-            System.out.println("Empty");
-        }
-        int index = 1;
-        for (final Project project : serviceLocator.getProjectEndpoint().getProjectList(session) ){
-            System.out.printf("%d. %s %s %s %n", index,
-                    project.getName(), project.getId(), project.getUserId());
-            index++;
-        }
+//
+//        final Session session = serviceLocator.getSession();
+//        if (serviceLocator.getProjectEndpoint().getProjectList(session).isEmpty()){
+//            System.out.println("Empty");
+//        }
+//        int index = 1;
+//        for (final Project project : serviceLocator.getProjectEndpoint().getProjectList(session) ){
+//            System.out.printf("%d. %s %s %s %n", index,
+//                    project.getName(), project.getId(), project.getUserId());
+//            index++;
+//        }
     }
 
     public String description(){

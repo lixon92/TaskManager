@@ -3,8 +3,6 @@ package ru.atkachev.tm.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "PROJECT_TBL")
+@Table(name = "project_tbl")
 @NamedQuery(name = "getAllProjects", query = "SELECT p from Project p")
 public class Project implements Serializable {
 
@@ -45,7 +43,4 @@ public class Project implements Serializable {
                 ", user=" + user +
                 '}';
     }
-
 }
-
-

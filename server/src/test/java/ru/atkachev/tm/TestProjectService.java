@@ -17,10 +17,13 @@ public class TestProjectService {
     public void testCreateProject() throws Exception{
 
         Project project = projectService.createProject(
-                "8bc6a26f-8945-485c-9f64-44595e8776b1",
-                "Project3",
+                "da1acf93-1a2e-43ae-a93a-448062d82029",
+                "Project1",
                 "test"
         );
+        for(int i = 0; i < 3; i++){
+
+        }
         System.out.println(project);
     }
 
@@ -47,7 +50,7 @@ public class TestProjectService {
 
     @Test
     public void testRemoveProject() throws Exception{
-        projectService.removeProject("1541a0bf-895f-492c-aa99-b6ac98409aec");
+        projectService.removeProject("dee7fc05-3e64-41ac-a85e-5de01730580e");
     }
 
     @Test

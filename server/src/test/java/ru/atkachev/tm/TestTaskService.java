@@ -18,8 +18,8 @@ public class TestTaskService {
 
         for(int i = 0; i < 4; i++){
             taskService.createTask(
-                    "8bc6a26f-8945-485c-9f64-44595e8776b1",
-                    "e41b032e-e99a-4817-9655-3c69138f6645",
+                    "da1acf93-1a2e-43ae-a93a-448062d82029",
+                    "dee7fc05-3e64-41ac-a85e-5de01730580e",
                     "task"+i,
                     "test"
             );

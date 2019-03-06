@@ -1,10 +1,9 @@
 package ru.atkachev.tm.repository;
 
 import lombok.NoArgsConstructor;
-import org.apache.commons.codec.digest.DigestUtils;
+//import org.apache.commons.codec.digest.DigestUtils;
 import ru.atkachev.tm.entity.Role;
 import ru.atkachev.tm.entity.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;

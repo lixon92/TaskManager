@@ -17,13 +17,17 @@ public class UserLogonCommand extends AbstractCommand {
     }
 
     public void execute() {
+
         System.out.println("enter user login");
         final String userLogin = serviceLocator.getConsoleServiceString();
         System.out.println("enter user password");
         final String userPassword = serviceLocator.getConsoleServiceString();
+
+
         final SessionEndpoint sessionEndpoint = serviceLocator.getSessionEndpoint();
-        try {
-            final Session session = sessionEndpoint.sessionStart(userLogin, DigestUtils.md5Hex(userPassword));
+            try {
+//            final Session session = sessionEndpoint.sessionStart(userLogin, DigestUtils.md5Hex(userPassword));
+            final Session session = sessionEndpoint.sessionStart(userLogin, userPassword);
             serviceLocator.setSession(session);
         }  catch (ru.atkachev.tm.endpoint.IOException_Exception e){
             System.out.println("User not found.");
