@@ -24,13 +24,6 @@ public class Session {
     private long timeStamp;
     private String sign;
 
-    public Session(final String userId){
-        this.userId = userId;
-        this.id = UUID.randomUUID().toString();
-        this.timeStamp = System.currentTimeMillis();
-        this.sign = ValidateSession.sign(id, userId, timeStamp);
-    }
-
     public Session(final User user){
         this.user = user;
         this.id = UUID.randomUUID().toString();

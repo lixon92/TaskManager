@@ -26,8 +26,7 @@ public class UserLogonCommand extends AbstractCommand {
 
         final SessionEndpoint sessionEndpoint = serviceLocator.getSessionEndpoint();
             try {
-//            final Session session = sessionEndpoint.sessionStart(userLogin, DigestUtils.md5Hex(userPassword));
-            final Session session = sessionEndpoint.sessionStart(userLogin, userPassword);
+            final Session session = sessionEndpoint.sessionStart(userLogin, DigestUtils.md5Hex(userPassword));
             serviceLocator.setSession(session);
         }  catch (ru.atkachev.tm.endpoint.IOException_Exception e){
             System.out.println("User not found.");

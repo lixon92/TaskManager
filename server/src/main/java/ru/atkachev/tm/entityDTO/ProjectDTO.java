@@ -1,15 +1,24 @@
 package ru.atkachev.tm.entityDTO;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.atkachev.tm.entity.Project;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class ProjectDTO {
 
-    final private String id;
-    final private Date dateCreated;
-    final private String description;
-    final private String name;
-    final private String userId;
+    private String id;
+    private Date dateCreated;
+    private String description;
+    private String name;
+    private String userId;
 
     public ProjectDTO(Project project){
         this.id = project.getId();
@@ -21,5 +30,13 @@ public class ProjectDTO {
 
     public static ProjectDTO toDTO(Project project){
         return new ProjectDTO(project);
+    }
+
+    public static Collection<ProjectDTO> toListDTO(Collection<Project> projects){
+        Collection<ProjectDTO> projectsDTO = new ArrayList<>();
+        for(Project project : projects){
+            projectsDTO.add(new ProjectDTO(project));
+        }
+        return projectsDTO;
     }
 }

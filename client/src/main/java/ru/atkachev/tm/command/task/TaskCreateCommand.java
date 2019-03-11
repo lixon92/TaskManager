@@ -26,7 +26,7 @@ public class TaskCreateCommand extends AbstractCommand {
         final Session session = serviceLocator.getSession();
 
         try{
-            serviceLocator.getTaskEndpoint().createTask( session,projectId, nameTask, "test");
+            serviceLocator.getTaskEndpoint().createTask( session, projectId, nameTask, "test");
         }catch (ru.atkachev.tm.endpoint.IOException_Exception e){
             System.out.println("Проект не найден");
         }

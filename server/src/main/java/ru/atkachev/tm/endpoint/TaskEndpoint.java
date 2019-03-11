@@ -1,8 +1,10 @@
 package ru.atkachev.tm.endpoint;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import lombok.NoArgsConstructor;
 import ru.atkachev.tm.entity.Session;
 import ru.atkachev.tm.entity.Task;
+import ru.atkachev.tm.entityDTO.TaskDTO;
 import ru.atkachev.tm.service.TaskService;
 import ru.atkachev.tm.util.ValidateSession;
 
@@ -14,8 +16,9 @@ import java.util.Collection;
 import java.util.List;
 
 @WebService
+@NoArgsConstructor
 public class TaskEndpoint {
-    final private TaskService taskService;
+    private TaskService taskService;
     public TaskEndpoint(final TaskService taskService){
         this.taskService = taskService;
     }
@@ -28,7 +31,7 @@ public class TaskEndpoint {
             @WebParam(name = "description") final String description
     ) throws IOException {
         ValidateSession.validate(session);
-        taskService.createTask(session.getUserId(), projectId, name, description);
+        taskService.createTask(session.getUser().getId(), projectId, name, description);
     }
 
     @WebMethod
@@ -52,11 +55,12 @@ public class TaskEndpoint {
     }
 
     @WebMethod
-    public Collection<Task> getTaskList(
+    public Collection<TaskDTO> getTaskList(
             @WebParam(name = "session") Session session
     ) {
         ValidateSession.validate(session);
-        return taskService.getTaskList();
+        Collection<Task> tasks = taskService.getTaskList();
+        return TaskDTO.toListDTO(tasks);
     }
 
     @WebMethod
@@ -69,11 +73,12 @@ public class TaskEndpoint {
     }
 
     @WebMethod
-    public Task getTaskById(
+    public TaskDTO getTaskById(
             @WebParam(name = "session") final Session session,
             @WebParam(name = "taskId") final String taskId
     ) {
         ValidateSession.validate(session);
-        return taskService.getTaskById(taskId);
+        Task task = taskService.getTaskById(taskId);
+        return TaskDTO.toDTO(task);
     }
 }

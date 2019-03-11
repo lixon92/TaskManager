@@ -72,7 +72,7 @@ public class TaskRepository {
     public void deleteTask(final String taskId){
         final Task task = new Task();
         task.setId(taskId);
-        em.remove(em.contains(task) ? task : em.merge(task));
+        em.remove(em.find(Task.class, taskId));
     }
 
 }

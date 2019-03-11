@@ -6,8 +6,6 @@ import ru.atkachev.tm.command.AbstractCommand;
 
 public class UserCreateCommand extends AbstractCommand {
 
-    private boolean secure = false;
-
     public UserCreateCommand(final IServiceLocator serviceLocate){
         super(serviceLocate);
     }
@@ -20,15 +18,16 @@ public class UserCreateCommand extends AbstractCommand {
 
         System.out.println("enter user login");
         final String login = serviceLocator.getConsoleServiceString();
-//        System.out.println("enter user first name");
-//        final String firstName = serviceLocator.getConsoleServiceString();
+        System.out.println("enter user first name");
+        final String firstName = serviceLocator.getConsoleServiceString();
 //        System.out.println("enter user last name");
 //        final String lastName = serviceLocator.getConsoleServiceString();
         System.out.println("enter user password");
         final String password = serviceLocator.getConsoleServiceString();
-        serviceLocator.getUserEndpoint().createUser(login, "", "", DigestUtils.md5Hex(password));
+        serviceLocator.getUserEndpoint().createUser(login, firstName, "4", DigestUtils.md5Hex(password));
     }
 
+    @Override
     public String description() {
         return "Register user";
     }

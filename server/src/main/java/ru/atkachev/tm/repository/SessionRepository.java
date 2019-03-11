@@ -31,23 +31,14 @@ public class SessionRepository {
         em.close();
     }
 
-//    final private EntityManager em = emf.createEntityManager();
-
-    public Session sessionStart(final String userId){
-        final Session session = new Session(userId);
-        em.merge(session);
-        return session;
-    }
-
     public Session sessionStart(final User user){
         final Session session = new Session(user);
         em.merge(session);
-//        em.close();
         return session;
     }
 
     public void sessionClose(final Session session){
-        em.remove(em.contains(session) ? session : em.merge(session));
+        em.remove(em.find(Session.class, session));
     }
 
 }

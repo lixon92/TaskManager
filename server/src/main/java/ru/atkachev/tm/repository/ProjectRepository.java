@@ -55,7 +55,7 @@ public class ProjectRepository {
             final String projectId,
             final String name,
             final String description
-    ){
+    ) {
         Project project = new Project();
         project.setId(projectId);
         project.setName(name);

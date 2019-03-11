@@ -1,7 +1,9 @@
 package ru.atkachev.tm.endpoint;
 
+import lombok.NoArgsConstructor;
 import ru.atkachev.tm.entity.Project;
 import ru.atkachev.tm.entity.Session;
+import ru.atkachev.tm.entityDTO.ProjectDTO;
 import ru.atkachev.tm.service.ProjectService;
 import ru.atkachev.tm.util.ValidateSession;
 
@@ -13,20 +15,22 @@ import java.util.Collection;
 import java.util.List;
 
 @WebService
+@NoArgsConstructor
 public class ProjectEndpoint {
-    final private ProjectService projectService;
+    private ProjectService projectService;
 
     public ProjectEndpoint(final ProjectService projectService){
         this.projectService = projectService;
     }
 
     @WebMethod
-    public Project getProjectById(
+    public ProjectDTO getProjectById(
         @WebParam(name = "session") final Session session,
         @WebParam(name = "projectId") final String projectId
     ) {
         ValidateSession.validate(session);
-        return projectService.getProjectById(projectId);
+        final Project project = projectService.getProjectById(projectId);
+        return ProjectDTO.toDTO(project);
     }
 
     @WebMethod
@@ -36,7 +40,7 @@ public class ProjectEndpoint {
         @WebParam(name = "description") final String description
     ) {
         ValidateSession.validate(session);
-        projectService.createProject(session.getUserId(), name, description);
+        projectService.createProject(session.getUser().getId(), name, description);
     }
 
     @WebMethod
@@ -60,11 +64,12 @@ public class ProjectEndpoint {
     }
 
     @WebMethod
-    public Collection<Project> getProjectList(
+    public Collection<ProjectDTO> getProjectList(
         @WebParam(name = "session") Session session
     ) {
         ValidateSession.validate(session);
-        return projectService.getProjectList();
+        Collection<Project> projects = projectService.getProjectList();
+        return ProjectDTO.toListDTO(projects);
     }
 
     @WebMethod
@@ -75,4 +80,5 @@ public class ProjectEndpoint {
         ValidateSession.validate(session);
         projectService.setProjectList(projectList);
     }
+
 }

@@ -30,10 +30,7 @@ public class SessionService {
         final SessionRepository sessionRepository = getSessionRepository();
         final UserRepository userRepository = getUserRepository();
 
-        userRepository.begin();
         final User user = userRepository.getUserByLogin(login);
-        userRepository.commit();
-        userRepository.close();
         if(!user.getPassword().equals(password)) throw new IOException();
 
         sessionRepository.begin();

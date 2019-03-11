@@ -8,12 +8,12 @@ public class ValidateSession {
     public static void validate(final Session session){
         if (session == null) throw new RuntimeException();
         if (session.getId() == null) throw new RuntimeException();
-        if (session.getUserId() == null) throw new RuntimeException();
+        if (session.getUser().getId() == null) throw new RuntimeException();
         if (session.getTimeStamp() == 0) throw new RuntimeException();
         if (!session.getSign().equals(
             ValidateSession.sign(
                 session.getId(),
-                session.getUserId(),
+                session.getUser().getId(),
                 session.getTimeStamp()
             )
         )) throw new RuntimeException();
